@@ -1,0 +1,944 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Jcenter," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="将自己写好的Android Library项目（即aar包）上传到公共的JCenter仓库，这样让其他人更方面的使用。目前JCenter仓库支持maven，gradle，Ivy三种方式。
+1. 本地环境　　使用环境以及插件版本的不同可能造成上传失败，所以先说明一下我使用的环境信息：
+
+Android Studio 2.2
+Gradle 2.2.0
+android-maven-gradle-plug">
+<meta property="og:type" content="article">
+<meta property="og:title" content="发布Android Library项目到JCenter">
+<meta property="og:url" content="http://yoursite.com/2017/03/21/发布Android-Library项目到JCenter/index.html">
+<meta property="og:site_name" content="csmijo's notes">
+<meta property="og:description" content="将自己写好的Android Library项目（即aar包）上传到公共的JCenter仓库，这样让其他人更方面的使用。目前JCenter仓库支持maven，gradle，Ivy三种方式。
+1. 本地环境　　使用环境以及插件版本的不同可能造成上传失败，所以先说明一下我使用的环境信息：
+
+Android Studio 2.2
+Gradle 2.2.0
+android-maven-gradle-plug">
+<meta property="og:updated_time" content="2017-03-21T10:30:15.116Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="发布Android Library项目到JCenter">
+<meta name="twitter:description" content="将自己写好的Android Library项目（即aar包）上传到公共的JCenter仓库，这样让其他人更方面的使用。目前JCenter仓库支持maven，gradle，Ivy三种方式。
+1. 本地环境　　使用环境以及插件版本的不同可能造成上传失败，所以先说明一下我使用的环境信息：
+
+Android Studio 2.2
+Gradle 2.2.0
+android-maven-gradle-plug">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title> 发布Android Library项目到JCenter | csmijo's notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9666bf3ba85102548e7f7986c97e44de";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=61314421";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">csmijo's notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/21/发布Android-Library项目到JCenter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="csmijo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/readDog.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="csmijo's notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                发布Android Library项目到JCenter
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-21T18:14:07+08:00">
+                2017-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/21/发布Android-Library项目到JCenter/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/21/发布Android-Library项目到JCenter/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/21/发布Android-Library项目到JCenter/" class="leancloud_visitors" data-flag-title="发布Android Library项目到JCenter">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>将自己写好的Android Library项目（即aar包）上传到公共的JCenter仓库，这样让其他人更方面的使用。目前JCenter仓库支持maven，gradle，Ivy三种方式。</p>
+<h2 id="1-本地环境"><a href="#1-本地环境" class="headerlink" title="1. 本地环境"></a>1. 本地环境</h2><p>　　使用环境以及插件版本的不同可能造成上传失败，所以先说明一下我使用的环境信息：</p>
+<ul>
+<li><strong><code>Android Studio 2.2</code></strong></li>
+<li><strong><code>Gradle 2.2.0</code></strong></li>
+<li><strong><code>android-maven-gradle-plugin</code></strong>插件: 1.5版本 (具体请看下面使用)</li>
+<li><strong><code>gradle-bintray-plugin</code></strong>插件: 1.6 版本</li>
+</ul>
+<h2 id="2-注册账号"><a href="#2-注册账号" class="headerlink" title="2. 注册账号"></a>2. 注册账号</h2><p>　　首先需要在 <code>http://bintray.com/</code> 注册一个账号（自备梯子），或者使用<code>github</code>账号登录也可以。</p>
+<p>　　注册完成后，在个人 <code>[edit profile](https://bintray.com/profile/edit)</code> 页面里找到<code>API Key</code>，后面会用到这个 <code>API Key</code>。</p>
+<h2 id="3-创建Project以及Module"><a href="#3-创建Project以及Module" class="headerlink" title="3. 创建Project以及Module"></a>3. 创建Project以及Module</h2><p>　　创建好Project以及Module之后，请先检查 <code>project build.xml</code>， 检查<code>gradle</code> 版本，因为<code>1.1.0</code>版本的可能会导致<code>javadoc</code>失败，所以你需要升级你的 <code>gradle</code> 版本。<code>project build.xml</code>的内容如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// Top-level build file where you can add configuration options common to all sub-projects/modules.</div><div class="line"></div><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath 'com.android.tools.build:gradle:2.2.0'</div><div class="line">        // NOTE: Do not place your application dependencies here; they belong</div><div class="line">        // in the individual module build.gradle files</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task clean(type: Delete) &#123;</div><div class="line">    delete rootProject.buildDir</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="4-在Project-build-xml中添加所需的插件"><a href="#4-在Project-build-xml中添加所需的插件" class="headerlink" title="4. 在Project build.xml中添加所需的插件"></a>4. 在Project build.xml中添加所需的插件</h2><p>在<code>project build.xml</code>中的<code>dependencies</code>节点下追加如下的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">classpath <span class="string">'com.github.dcendents:android-maven-gradle-plugin:1.5'</span></div><div class="line">classpath <span class="string">'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'</span></div></pre></td></tr></table></figure>
+<ul>
+<li><strong>android-maven-gradle-plugin</strong> 插件是用来打包 Maven所需文件的。git地址，<a href="https://github.com/dcendents/android-maven-gradle-plugin" target="_blank" rel="external">https://github.com/dcendents/android-maven-gradle-plugin</a></li>
+<li><strong>gradle-bintray-plugin</strong> 插件是用来将生成的 Maven所需文件上传到Bintray的。git地址：<a href="https://github.com/bintray/gradle-bintray-plugin" target="_blank" rel="external">https://github.com/bintray/gradle-bintray-plugin</a></li>
+</ul>
+<h2 id="5-配置项目信息"><a href="#5-配置项目信息" class="headerlink" title="5. 配置项目信息"></a>5. 配置项目信息</h2><p>　　在<code>library module</code>目录下，新建一个文件<code>project.properties</code>，在该文件中写上如下的信息，这些信息在后面的<code>bintrayUpload.gradle</code> 中将会用到。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#project</div><div class="line">project.name=     //项目名称</div><div class="line">project.groupId=     //项目组ID，通常如果你的包名为com.example.test，那么项目组的ID就是com.example</div><div class="line">project.artifactId=    //项目ID，通常情况下如果你的包名为com.example.test，那么项目ID就是test</div><div class="line">project.packaging=aar  //包类型，Android库是aar</div><div class="line">project.siteUrl=   //项目官方网站的地址，没有的话就用Github上的地址，例如：https://github.com/csmijo/probeLib</div><div class="line">project.gitUrl=     //项目的Git地址，例如：https://github.com/csmijo/probeLib.git</div><div class="line">project.description=   // 对项目的描述</div></pre></td></tr></table></figure>
+<h2 id="6-配置Bintray账号以及开发者信息"><a href="#6-配置Bintray账号以及开发者信息" class="headerlink" title="6. 配置Bintray账号以及开发者信息"></a>6. 配置Bintray账号以及开发者信息</h2><p>　　在<code>library module</code>目录下，新建一个文件<code>local.properties</code>，在该文件中写上如下的信息，这些信息在后面的<code>bintrayUpload.gradle</code> 中将会用到。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#developer</div><div class="line">developer.id=   //通常是你在开源社区的昵称</div><div class="line">developer.name=    //你的姓名</div><div class="line">developer.email=    //你的邮箱</div><div class="line"></div><div class="line">#bintray</div><div class="line">bintray.user=      //你的Bintray的用户名</div><div class="line">bintray.apiKey=    //你的的Bintray的API Key</div></pre></td></tr></table></figure></p>
+<p><strong>[注意]:  要将<code>local.proerties</code>文件加入忽略列表，以免被提交到Github或其他网站泄露个人信息</strong></p>
+<h2 id="7-配置bintrayUpload-gradle"><a href="#7-配置bintrayUpload-gradle" class="headerlink" title="7. 配置bintrayUpload.gradle"></a>7. 配置bintrayUpload.gradle</h2><p>　　首先下载 <a href="https://github.com/csmijo/probeLib/blob/master/bintrayUpload.gradle" target="_blank" rel="external">bintrayUpload.gradle</a>  文件，并把它放在<code>library module</code>目录下。然后修改<code>library module</code>的<code>build.xml</code>文件，在文件的最后添加上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apply from: &quot;bintrayUpload.gradle&quot;</div></pre></td></tr></table></figure></p>
+<p><strong>[注意]： 一定是在<code>module build.xml</code>的最后添加</strong></p>
+<h2 id="8-执行命令打包并上传到Bintray"><a href="#8-执行命令打包并上传到Bintray" class="headerlink" title="8. 执行命令打包并上传到Bintray"></a>8. 执行命令打包并上传到Bintray</h2><p>　　在<code>Android studio</code>中打开<code>Terminal</code>，执行<code>gradle bintrayUpload</code>命令进行上传。<br>在这之前，可以通过<code>gradle install</code>检查一下编译是否有错。</p>
+<h2 id="9-请求提交项目到JCenter"><a href="#9-请求提交项目到JCenter" class="headerlink" title="9. 请求提交项目到JCenter"></a>9. 请求提交项目到JCenter</h2><p>　　如果<strong>上传成功</strong>，你就会在<code>bintray</code>网站的个人主页看到上传的<code>library module</code>进入到项目详情，在右下角的<code>Linked To</code>区域点击<code>Add to JCenter</code>，然后点击<code>Send</code>即可。</p>
+<p>　　然后就等待审核，一般大概需要4到5个小时，审核通过后会给你发邮件通知你，<strong>并且以后更新项目就不需要再审核了</strong>。</p>
+<h2 id="10-gradle导入使用"><a href="#10-gradle导入使用" class="headerlink" title="10. gradle导入使用"></a>10. gradle导入使用</h2><p>当审核通过，别人就可以一句话导入你的项目了，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.csmijo:proxx:1.0.4&apos;</div></pre></td></tr></table></figure></p>
+<h2 id="11-遇到的坑"><a href="#11-遇到的坑" class="headerlink" title="11. 遇到的坑"></a>11. 遇到的坑</h2><h3 id="1-保持你的library-module的名字和artifactId一样"><a href="#1-保持你的library-module的名字和artifactId一样" class="headerlink" title="1. 保持你的library module的名字和artifactId一样"></a>1. 保持你的library module的名字和artifactId一样</h3><p>　　因为在<code>Bintray</code>上你的项目的<code>maven-metadata.xml</code>文件的路径是<code>gruopId+&quot;/&quot;+module</code>名称。</p>
+<h3 id="2-Error-Library-projects-cannot-set-applicationId-applicationId-is-set-to-…"><a href="#2-Error-Library-projects-cannot-set-applicationId-applicationId-is-set-to-…" class="headerlink" title="2. Error: Library projects cannot set applicationId. applicationId is set to …"></a>2. Error: Library projects cannot set applicationId. applicationId is set to …</h3><p>出现在错误的原因在于library的<code>build.gradle</code>里的<code>defaultConfig</code>存在<code>applicationId</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">defaultConfig &#123;</div><div class="line">        applicationId &quot;com.du.android.recyclerview&quot;    //删除这一行就不会再报这个错误了</div><div class="line">        minSdkVersion 21</div><div class="line">        targetSdkVersion 21</div><div class="line">        versionCode 1</div><div class="line">        versionName &quot;1.0&quot;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="3-Error-No-service-of-type-Factory-available-in-ProjectScopeServices"><a href="#3-Error-No-service-of-type-Factory-available-in-ProjectScopeServices" class="headerlink" title="3. Error:No service of type Factory available in ProjectScopeServices."></a>3. Error:No service of type Factory available in ProjectScopeServices.</h3><p>出现这个错误的原因在于<code>project build.xml</code> 的<code>android-maven-gradle-plugin</code>版本太低，直接将版本提高就好，具体版本信息请查看<code>android-maven-gradle-plugin</code>的github，<a href="https://github.com/dcendents/android-maven-gradle-plugin。" target="_blank" rel="external">https://github.com/dcendents/android-maven-gradle-plugin。</a></p>
+<h3 id="4-Execution-failed-for-task-‘-proxx-javadoc’-gt-Javadoc-generation-failed-Generated-Javadoc-options-file-useful-for-troubleshooting"><a href="#4-Execution-failed-for-task-‘-proxx-javadoc’-gt-Javadoc-generation-failed-Generated-Javadoc-options-file-useful-for-troubleshooting" class="headerlink" title="4. Execution failed for task ‘:proxx:javadoc’.&gt; Javadoc generation failed. Generated Javadoc options file (useful for troubleshooting):"></a>4. Execution failed for task ‘:proxx:javadoc’.&gt; Javadoc generation failed. Generated Javadoc options file (useful for troubleshooting):</h3><p>在<code>project</code>的<code>build.xml</code>中加入如下代码即可解决：</p>
+<pre><code>tasks.getByPath(&quot;:probe:javadoc&quot;).enabled = false
+</code></pre><hr>
+<p>[参考文献]</p>
+<ul>
+<li><a href="https://github.com/xiaopansky/android-library-publish-to-jcenter" target="_blank" rel="external">5分钟发布Android Library项目到JCenter</a></li>
+<li><a href="http://blog.qiji.tech/archives/9905" target="_blank" rel="external">Android 发布项目到 jcenter 遇到的坑</a></li>
+<li><a href="http://blog.csdn.net/u010665691/article/details/44355323" target="_blank" rel="external">Android Studio报错–Error: Library projects cannot set applicationId. applicationId is set to …</a></li>
+<li><a href="http://www.jianshu.com/p/c4f4894ad215" target="_blank" rel="external">Android Studio出现Error:No service of type Factory available in ProjectScopeServices.</a></li>
+<li><a href="http://blog.qiji.tech/archives/9905" target="_blank" rel="external">Android 发布项目到 jcenter 遇到的坑</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Jcenter/" rel="tag"># Jcenter</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/20/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/03/21/发布Android-Library项目到JCenter/"
+     data-title="发布Android Library项目到JCenter"
+     data-content=""
+     data-url="http://yoursite.com/2017/03/21/发布Android-Library项目到JCenter/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/21/发布Android-Library项目到JCenter/"
+           data-title="发布Android Library项目到JCenter" data-url="http://yoursite.com/2017/03/21/发布Android-Library项目到JCenter/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/readDog.png"
+               alt="csmijo" />
+          <p class="site-author-name" itemprop="name">csmijo</p>
+           
+              <p class="site-description motion-element" itemprop="description">路漫漫其修远兮，吾将上下而求索</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/csmijo" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/e7613170c06c" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-home"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-本地环境"><span class="nav-text">1. 本地环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-注册账号"><span class="nav-text">2. 注册账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-创建Project以及Module"><span class="nav-text">3. 创建Project以及Module</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-在Project-build-xml中添加所需的插件"><span class="nav-text">4. 在Project build.xml中添加所需的插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-配置项目信息"><span class="nav-text">5. 配置项目信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-配置Bintray账号以及开发者信息"><span class="nav-text">6. 配置Bintray账号以及开发者信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-配置bintrayUpload-gradle"><span class="nav-text">7. 配置bintrayUpload.gradle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-执行命令打包并上传到Bintray"><span class="nav-text">8. 执行命令打包并上传到Bintray</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-请求提交项目到JCenter"><span class="nav-text">9. 请求提交项目到JCenter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-gradle导入使用"><span class="nav-text">10. gradle导入使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-遇到的坑"><span class="nav-text">11. 遇到的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-保持你的library-module的名字和artifactId一样"><span class="nav-text">1. 保持你的library module的名字和artifactId一样</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Error-Library-projects-cannot-set-applicationId-applicationId-is-set-to-…"><span class="nav-text">2. Error: Library projects cannot set applicationId. applicationId is set to …</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Error-No-service-of-type-Factory-available-in-ProjectScopeServices"><span class="nav-text">3. Error:No service of type Factory available in ProjectScopeServices.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Execution-failed-for-task-‘-proxx-javadoc’-gt-Javadoc-generation-failed-Generated-Javadoc-options-file-useful-for-troubleshooting"><span class="nav-text">4. Execution failed for task ‘:proxx:javadoc’.> Javadoc generation failed. Generated Javadoc options file (useful for troubleshooting):</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">csmijo</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"csmijogithubio"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("STiYsX2zGYEk1zQNJ2TuEUnz-gzGzoHsz", "E5dh7bY902pO6YVkv9U6o0nC");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
