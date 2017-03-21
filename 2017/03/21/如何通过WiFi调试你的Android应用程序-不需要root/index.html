@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="csmijo" />
+  <meta name="keywords" content="Android,adb,wifi," />
 
 
 
@@ -87,15 +87,34 @@
 
 
 
-<meta name="description" content="测试开发 | Android">
-<meta property="og:type" content="website">
-<meta property="og:title" content="csmijo's notes">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="当使用真机进行Android app debug时，需要使用USB数据线将手机连接到电脑上，这些数据线会造成很多的不方便。下面将介绍一种通过Wifi进行debug的方式，它将解放我们的数据线。
+1. 使用的必备条件使用该方法需要一些必要的前提：
+
+首先还是需要有一根USB 数据线，这个将会在初始检查时使用到
+保证pc端的网络和手机端的网络在同一个网络环境
+
+2. 使用步骤通过以下简单的几步，就可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何通过WiFi调试你的Android应用程序(不需要root)">
+<meta property="og:url" content="http://yoursite.com/2017/03/21/如何通过WiFi调试你的Android应用程序-不需要root/index.html">
 <meta property="og:site_name" content="csmijo's notes">
-<meta property="og:description" content="测试开发 | Android">
+<meta property="og:description" content="当使用真机进行Android app debug时，需要使用USB数据线将手机连接到电脑上，这些数据线会造成很多的不方便。下面将介绍一种通过Wifi进行debug的方式，它将解放我们的数据线。
+1. 使用的必备条件使用该方法需要一些必要的前提：
+
+首先还是需要有一根USB 数据线，这个将会在初始检查时使用到
+保证pc端的网络和手机端的网络在同一个网络环境
+
+2. 使用步骤通过以下简单的几步，就可以">
+<meta property="og:updated_time" content="2017-03-21T11:08:11.815Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="csmijo's notes">
-<meta name="twitter:description" content="测试开发 | Android">
+<meta name="twitter:title" content="如何通过WiFi调试你的Android应用程序(不需要root)">
+<meta name="twitter:description" content="当使用真机进行Android app debug时，需要使用USB数据线将手机连接到电脑上，这些数据线会造成很多的不方便。下面将介绍一种通过Wifi进行debug的方式，它将解放我们的数据线。
+1. 使用的必备条件使用该方法需要一些必要的前提：
+
+首先还是需要有一根USB 数据线，这个将会在初始检查时使用到
+保证pc端的网络和手机端的网络在同一个网络环境
+
+2. 使用步骤通过以下简单的几步，就可以">
 
 
 
@@ -127,7 +146,7 @@
 
 
 
-  <title> csmijo's notes </title>
+  <title> 如何通过WiFi调试你的Android应用程序(不需要root) | csmijo's notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -171,9 +190,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -266,9 +283,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -298,10 +315,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/03/21/如何通过WiFi调试你的Android应用程序-不需要root/" itemprop="url">
-                  如何通过WiFi调试你的Android应用程序(不需要root)
-                </a>
+                如何通过WiFi调试你的Android应用程序(不需要root)
               
             
           </h1>
@@ -395,389 +409,118 @@
       
 
       
-        
-          
-          当使用真机进行Android app debug时，需要使用USB数据线将手机连接到电脑上，这些数据线会造成很多的不方便。下面将介绍一种通过Wifi进行debug的方式，它将解放我们的数据线。
-1. 使用的必备条件使用该方法需要一些必要的前提：
+        <p>当使用真机进行Android app debug时，需要使用USB数据线将手机连接到电脑上，这些数据线会造成很多的不方便。下面将介绍一种通过Wifi进行debug的方式，它将解放我们的数据线。</p>
+<h2 id="1-使用的必备条件"><a href="#1-使用的必备条件" class="headerlink" title="1. 使用的必备条件"></a>1. 使用的必备条件</h2><p>使用该方法需要一些必要的前提：</p>
+<ul>
+<li>首先还是需要有<strong>一根USB 数据线</strong>，这个将会在初始检查时使用到</li>
+<li>保证pc端的网络和手机端的网络在同一个网络环境</li>
+</ul>
+<h2 id="2-使用步骤"><a href="#2-使用步骤" class="headerlink" title="2. 使用步骤"></a>2. 使用步骤</h2><p>通过以下简单的几步，就可以解放手机和数据线了：</p>
+<ol>
+<li>通过USB数据线将手机设备连接到电脑上，以便检查USB debugging处于正常工作状态。在电脑端可以通过<code>adb devices</code>命令进行检查。</li>
+<li>在电脑端运行 <code>adb tcpip 5555</code>命令</li>
+<li>断开手机和电脑的连接（移除USB数据线）</li>
+<li>在手机的 <code>设置--&gt; 关于手机 --&gt; 状态消息</code> 中<strong>查看手机的IP地址</strong></li>
+<li>在电脑端运行 <code>adb connect &lt;手机ip地址&gt;:5555</code>命令</li>
+<li>在电脑端重新运行 <code>adb devices</code>，你将看到你的手机，显示的是手机的ip以及当前的状态</li>
+</ol>
+<p>通过上面的步骤就可以像连接着USB数据线一样使用手机了。</p>
+<h2 id="3-疑问"><a href="#3-疑问" class="headerlink" title="3. 疑问"></a>3. 疑问</h2><ol>
+<li><p>是不是每次切换wifi后或者每次切换workspace后都必须重新执行上述的6个步骤呢？</p>
+<p> 　　其实是不用的，步骤1，2，3是为了将手机设置成 wifi-debug 模式，所以不需要每次都进行设置。<strong>环境变化后，只需要重复步骤4，5，6即可。</strong></p>
+</li>
+<li><p>由于Android 手机每次重启后都会丢失 wifi-debug模式，所以<strong>每次重启都需要重新重复上述的6个步骤。</strong></p>
+</li>
+</ol>
+<hr>
+<p>[参考文献]</p>
+<ul>
+<li><a href="https://futurestud.io/blog/how-to-debug-your-android-app-over-wifi-without-root" target="_blank" rel="external">How to Debug Your Android App over WiFi (without Root!)</a></li>
+</ul>
 
-首先还是需要有一根USB 数据线，这个将会在初始检查
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/21/如何通过WiFi调试你的Android应用程序-不需要root/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
       
     </div>
 
     <div>
       
+        
+
+      
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/21/发布Android-Library项目到JCenter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="csmijo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/readDog.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="csmijo's notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/21/发布Android-Library项目到JCenter/" itemprop="url">
-                  发布Android Library项目到JCenter
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-21T18:14:07+08:00">
-                2017-03-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
-
+            <a href="/tags/adb/" rel="tag"># adb</a>
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/21/发布Android-Library项目到JCenter/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/21/发布Android-Library项目到JCenter/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
+            <a href="/tags/wifi/" rel="tag"># wifi</a>
           
-
-          
-          
-             <span id="/2017/03/21/发布Android-Library项目到JCenter/" class="leancloud_visitors" data-flag-title="发布Android Library项目到JCenter">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
         
-          
-          将自己写好的Android Library项目（即aar包）上传到公共的JCenter仓库，这样让其他人更方面的使用。目前JCenter仓库支持maven，gradle，Ivy三种方式。
-1. 本地环境　　使用环境以及插件版本的不同可能造成上传失败，所以先说明一下我使用的环境信息：
+      
 
-Android
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/21/发布Android-Library项目到JCenter/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/21/发布Android-Library项目到JCenter/" rel="next" title="发布Android Library项目到JCenter">
+                <i class="fa fa-chevron-left"></i> 发布Android Library项目到JCenter
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
+          <span class="post-nav-divider"></span>
 
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/20/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="csmijo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/readDog.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="csmijo's notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/20/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T20:22:31+08:00">
-                2017-03-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/小工具/" itemprop="url" rel="index">
-                    <span itemprop="name">小工具</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/20/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/20/hello-world/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/03/20/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/03/21/如何通过WiFi调试你的Android应用程序-不需要root/"
+     data-title="如何通过WiFi调试你的Android应用程序(不需要root)"
+     data-content=""
+     data-url="http://yoursite.com/2017/03/21/如何通过WiFi调试你的Android应用程序-不需要root/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
           
           </div>
@@ -785,6 +528,14 @@ Android
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/21/如何通过WiFi调试你的Android应用程序-不需要root/"
+           data-title="如何通过WiFi调试你的Android应用程序(不需要root)" data-url="http://yoursite.com/2017/03/21/如何通过WiFi调试你的Android应用程序-不需要root/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -804,8 +555,17 @@ Android
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/readDog.png"
@@ -883,6 +643,22 @@ Android
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-使用的必备条件"><span class="nav-text">1. 使用的必备条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-使用步骤"><span class="nav-text">2. 使用步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-疑问"><span class="nav-text">3. 疑问</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -984,6 +760,10 @@ Android
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
