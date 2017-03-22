@@ -103,7 +103,7 @@ android-maven-gradle-plug">
 Android Studio 2.2
 Gradle 2.2.0
 android-maven-gradle-plug">
-<meta property="og:updated_time" content="2017-03-21T10:30:15.116Z">
+<meta property="og:updated_time" content="2017-03-22T01:55:31.678Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="发布Android Library项目到JCenter">
 <meta name="twitter:description" content="将自己写好的Android Library项目（即aar包）上传到公共的JCenter仓库，这样让其他人更方面的使用。目前JCenter仓库支持maven，gradle，Ivy三种方式。
@@ -416,6 +416,7 @@ android-maven-gradle-plug">
 </ul>
 <h2 id="2-注册账号"><a href="#2-注册账号" class="headerlink" title="2. 注册账号"></a>2. 注册账号</h2><p>　　首先需要在 <code>http://bintray.com/</code> 注册一个账号（自备梯子），或者使用<code>github</code>账号登录也可以。</p>
 <p>　　注册完成后，在个人 <code>[edit profile](https://bintray.com/profile/edit)</code> 页面里找到<code>API Key</code>，后面会用到这个 <code>API Key</code>。</p>
+<a id="more"></a>
 <h2 id="3-创建Project以及Module"><a href="#3-创建Project以及Module" class="headerlink" title="3. 创建Project以及Module"></a>3. 创建Project以及Module</h2><p>　　创建好Project以及Module之后，请先检查 <code>project build.xml</code>， 检查<code>gradle</code> 版本，因为<code>1.1.0</code>版本的可能会导致<code>javadoc</code>失败，所以你需要升级你的 <code>gradle</code> 版本。<code>project build.xml</code>的内容如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// Top-level build file where you can add configuration options common to all sub-projects/modules.</div><div class="line"></div><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath 'com.android.tools.build:gradle:2.2.0'</div><div class="line">        // NOTE: Do not place your application dependencies here; they belong</div><div class="line">        // in the individual module build.gradle files</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task clean(type: Delete) &#123;</div><div class="line">    delete rootProject.buildDir</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="4-在Project-build-xml中添加所需的插件"><a href="#4-在Project-build-xml中添加所需的插件" class="headerlink" title="4. 在Project build.xml中添加所需的插件"></a>4. 在Project build.xml中添加所需的插件</h2><p>在<code>project build.xml</code>中的<code>dependencies</code>节点下追加如下的代码：</p>
@@ -593,7 +594,7 @@ android-maven-gradle-plug">
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -611,7 +612,7 @@ android-maven-gradle-plug">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

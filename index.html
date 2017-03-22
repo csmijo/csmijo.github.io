@@ -277,6 +277,863 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/在onTouchEvent中处理任意时间的长按事件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="csmijo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/readDog.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="csmijo's notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/22/在onTouchEvent中处理任意时间的长按事件/" itemprop="url">
+                  在onTouchEvent中处理任意时间的长按事件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T09:42:11+08:00">
+                2017-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/22/在onTouchEvent中处理任意时间的长按事件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/22/在onTouchEvent中处理任意时间的长按事件/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/22/在onTouchEvent中处理任意时间的长按事件/" class="leancloud_visitors" data-flag-title="在onTouchEvent中处理任意时间的长按事件">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="A-方法一-（不是最优）"><a href="#A-方法一-（不是最优）" class="headerlink" title="A. 方法一 （不是最优）"></a>A. 方法一 （不是最优）</h2><h3 id="1-欲实现的效果"><a href="#1-欲实现的效果" class="headerlink" title="1. 欲实现的效果"></a>1. 欲实现的效果</h3><p>　　Android提供了GestureDetector类来处理一些常用的手势操作，比如说 onLongPress,onFling 等。但这里不使用GestureDetector，而是直接在自定义View重写的onTouchEvent中进行处理。</p>
+<p>　　欲实现的效果是：当手机按住屏幕时，如果在指定的时间内没有移动（如500毫秒）,那么进入长按模式，此时手指在屏幕上移动都算作长按模式。如果手机按住屏幕就立马移动，那么就算作移动模式。</p>
+<h3 id="2-使用的方法"><a href="#2-使用的方法" class="headerlink" title="2. 使用的方法"></a>2. 使用的方法</h3><p>　　MotionEvent 类提供了记录当前坐标的函数（<strong>getX()</strong>,<strong>getY()</strong>）和当前事件产生的时间的函数（<strong>getEventTime()</strong>）以及按下时间（<strong>getDowntime()</strong>）。MotionEvent同时也提供了当前的操作类型，按下（ACTION_DOWN）、 移动 （ACTION_MOVE）、弹起 （ACTION_UP）。有了这些参数，我们便可以轻易的实现想要的效果了。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/22/在onTouchEvent中处理任意时间的长按事件/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/Android内存泄露/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="csmijo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/readDog.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="csmijo's notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/22/Android内存泄露/" itemprop="url">
+                  Android内存泄露
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T09:39:52+08:00">
+                2017-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/22/Android内存泄露/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/22/Android内存泄露/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/22/Android内存泄露/" class="leancloud_visitors" data-flag-title="Android内存泄露">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>　　最近在开发学习项目中使用<a href="https://github.com/square/leakcanary">LeakCanary</a>进行内存泄露的检测，发现了一些之前没有注意到的地方。为了寻找解决方法，在网上查了不少资料，现总结一下。常见的内存泄露包括一下几种情况。</p>
+<h2 id="1-监听器"><a href="#1-监听器" class="headerlink" title="1. 监听器"></a>1. 监听器</h2><p>　　当使用系统服务如SensorManager，LocationManager的时候，一般通过<code>cotext.getSystemService</code>获取，它们负责执行某些后台任务，或者为硬件访问提供接口。如果context 对象想要在服务内部的事件发生时被通知，那就需要<strong>把自己注册到服务的监听器中</strong>。然而，这会让服务持有activity的引用，如果在<strong>activity销毁的时候忘记了取消注册</strong>，那就会导致activity 内存泄露了。</p>
+<p><strong>【解决方法】：</strong></p>
+<p>　　在activity的 onDestroy() 方法中取消注册。</p>
+<p><strong>【示例】：</strong></p>
+<p><strong>修改前：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_main);</div><div class="line">    SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);</div><div class="line">    Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ALL);</div><div class="line">    sensorManager.registerListener(<span class="keyword">this</span>, sensor, SensorManager.SENSOR_DELAY_FASTEST);    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/22/Android内存泄露/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/Android-获取当前Activity的屏幕截图/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="csmijo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/readDog.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="csmijo's notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/22/Android-获取当前Activity的屏幕截图/" itemprop="url">
+                  Android 获取当前Activity的屏幕截图
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T09:33:57+08:00">
+                2017-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/22/Android-获取当前Activity的屏幕截图/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/22/Android-获取当前Activity的屏幕截图/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/22/Android-获取当前Activity的屏幕截图/" class="leancloud_visitors" data-flag-title="Android 获取当前Activity的屏幕截图">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>　　该方法是通过View的方式获取当前activity的屏幕截图，并不是frameBuffer的方式，所以有一定的局限性。但是这种方法相对简单，容易理解。</p>
+<h2 id="2-使用方法"><a href="#2-使用方法" class="headerlink" title="2. 使用方法"></a>2. 使用方法</h2><ol>
+<li>对activity进行截图 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</div><div class="line">     * Activity screenCap</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> activity</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Bitmap <span class="title">activityShot</span><span class="params">(Activity activity)</span> </span>&#123;</div><div class="line">        <span class="comment">/*获取windows中最顶层的view*/</span></div><div class="line">        View view = activity.getWindow().getDecorView();</div><div class="line"></div><div class="line">        <span class="comment">//允许当前窗口保存缓存信息</span></div><div class="line">        view.setDrawingCacheEnabled(<span class="keyword">true</span>);</div><div class="line">        view.buildDrawingCache();</div><div class="line"></div><div class="line">        <span class="comment">//获取状态栏高度</span></div><div class="line">        Rect rect = <span class="keyword">new</span> Rect();</div><div class="line">        view.getWindowVisibleDisplayFrame(rect);</div><div class="line">        <span class="keyword">int</span> statusBarHeight = rect.top;</div><div class="line"></div><div class="line">        WindowManager windowManager = activity.getWindowManager();</div><div class="line"></div><div class="line">        <span class="comment">//获取屏幕宽和高</span></div><div class="line">        DisplayMetrics outMetrics = <span class="keyword">new</span> DisplayMetrics();</div><div class="line">        windowManager.getDefaultDisplay().getMetrics(outMetrics);</div><div class="line">        <span class="keyword">int</span> width = outMetrics.widthPixels;</div><div class="line">        <span class="keyword">int</span> height = outMetrics.heightPixels;</div><div class="line"></div><div class="line">        <span class="comment">//去掉状态栏</span></div><div class="line">        Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache(), <span class="number">0</span>, statusBarHeight, width,</div><div class="line">                height-statusBarHeight);</div><div class="line"></div><div class="line">        <span class="comment">//销毁缓存信息</span></div><div class="line">        view.destroyDrawingCache();</div><div class="line">        view.setDrawingCacheEnabled(<span class="keyword">false</span>);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> bitmap;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/22/Android-获取当前Activity的屏幕截图/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/反编译详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="csmijo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/readDog.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="csmijo's notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/22/反编译详解/" itemprop="url">
+                  反编译详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T09:31:02+08:00">
+                2017-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/22/反编译详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/22/反编译详解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/22/反编译详解/" class="leancloud_visitors" data-flag-title="反编译详解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="1-Apk反编译得到Java源代码"><a href="#1-Apk反编译得到Java源代码" class="headerlink" title="1. Apk反编译得到Java源代码"></a>1. Apk反编译得到Java源代码</h2><blockquote>
+<p><code>使用dex2jar.bat，jd-gui.exe</code></p>
+</blockquote>
+<h3 id="具体步骤："><a href="#具体步骤：" class="headerlink" title="具体步骤："></a>具体步骤：</h3><ol>
+<li>将Apk文件的后缀改为<code>zip</code>并解压，得到其中的<code>classes.dex</code>，classes.dex文件就是java文件编译通过dx工具打包而成的；</li>
+<li>将<code>classes.dex</code>文件<code>复制</code>到dex2jar.bat所在的目录</li>
+<li>在<code>命令行</code>下定位到dex2jar.bat所在的目录，运行<strong><code>dex2jar.bat classes.dex</code></strong></li>
+<li>生成<code>classes_dex2jar.jar</code>文件</li>
+<li>双击<code>jd-gui.exe</code>，然后打开上面生成的jar包<code>classes_dex2jar.jar</code>，即可看到源代码</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/22/反编译详解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/Android-studio打包及引用aar/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="csmijo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/readDog.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="csmijo's notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/22/Android-studio打包及引用aar/" itemprop="url">
+                  Android studio打包及引用aar
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T09:25:05+08:00">
+                2017-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/22/Android-studio打包及引用aar/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/22/Android-studio打包及引用aar/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/22/Android-studio打包及引用aar/" class="leancloud_visitors" data-flag-title="Android studio打包及引用aar">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="1-简述"><a href="#1-简述" class="headerlink" title="1. 简述"></a>1. 简述</h2><p>Gradle的一些基本依赖配置方式如下：</p>
+<ul>
+<li><code>compile fileTree(dir:&#39;xxx&#39;,include:[&#39;*.jar&#39;,&#39;*.xxx&#39;])</code>: 将某个目录下所有符合扩展名的文件作为依赖</li>
+<li><code>compile &#39;com.xx.xx:ProjectName:Version&#39;</code>:配置Maven库为依赖</li>
+<li><code>compile project(&#39;:otherModule&#39;)</code>:配置另一个module作为本Module的依赖，被依赖的Module必须被导入到当前工程中</li>
+<li><code>compile file(&#39;xxx.jar&#39;)</code>: 配置某个jar包作为依赖</li>
+</ul>
+<h2 id="2-AAR文件简介"><a href="#2-AAR文件简介" class="headerlink" title="2. AAR文件简介"></a>2. AAR文件简介</h2><p>　　假如我们希望提供一个带有资源文件的第三方库给别人使用，总不能直接把源代码给别人，但是我们知道eclipse打包的时候不能包含res的资源文件，于是Android在发布Android studio的时候就发布了一种独有的格式AAR，专门用于打包UI组件库。与jar相比其多了一些UI组件用到的属性、图片等一系列文件，它的好处在于你不需要再多创建一个Library Module，只需引用这个AAR文件即可，Android Sudio会自动把AAR包里的文件跟你的项目融合。</p>
+<p>要输出aar文件，必须将Module配置为library，在gradle文件中如下：</p>
+<ul>
+<li>要输出 aar：<code>apply plugin:&#39;com.android.library&#39;</code></li>
+<li>要输出 apk：<code>apply plugin:&#39;com.android.application&#39;</code></li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/22/Android-studio打包及引用aar/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/21/如何通过WiFi调试你的Android应用程序-不需要root/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -396,12 +1253,12 @@
 
       
         
-          
-          当使用真机进行Android app debug时，需要使用USB数据线将手机连接到电脑上，这些数据线会造成很多的不方便。下面将介绍一种通过Wifi进行debug的方式，它将解放我们的数据线。
-1. 使用的必备条件使用该方法需要一些必要的前提：
-
-首先还是需要有一根USB 数据线，这个将会在初始检查
-          ...
+          <p>当使用真机进行Android app debug时，需要使用USB数据线将手机连接到电脑上，这些数据线会造成很多的不方便。下面将介绍一种通过Wifi进行debug的方式，它将解放我们的数据线。</p>
+<h2 id="1-使用的必备条件"><a href="#1-使用的必备条件" class="headerlink" title="1. 使用的必备条件"></a>1. 使用的必备条件</h2><p>使用该方法需要一些必要的前提：</p>
+<ul>
+<li>首先还是需要有<strong>一根USB 数据线</strong>，这个将会在初始检查时使用到</li>
+<li>保证pc端的网络和手机端的网络在同一个网络环境</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/21/如何通过WiFi调试你的Android应用程序-不需要root/#more" rel="contents">
@@ -566,12 +1423,16 @@
 
       
         
-          
-          将自己写好的Android Library项目（即aar包）上传到公共的JCenter仓库，这样让其他人更方面的使用。目前JCenter仓库支持maven，gradle，Ivy三种方式。
-1. 本地环境　　使用环境以及插件版本的不同可能造成上传失败，所以先说明一下我使用的环境信息：
-
-Android
-          ...
+          <p>将自己写好的Android Library项目（即aar包）上传到公共的JCenter仓库，这样让其他人更方面的使用。目前JCenter仓库支持maven，gradle，Ivy三种方式。</p>
+<h2 id="1-本地环境"><a href="#1-本地环境" class="headerlink" title="1. 本地环境"></a>1. 本地环境</h2><p>　　使用环境以及插件版本的不同可能造成上传失败，所以先说明一下我使用的环境信息：</p>
+<ul>
+<li><strong><code>Android Studio 2.2</code></strong></li>
+<li><strong><code>Gradle 2.2.0</code></strong></li>
+<li><strong><code>android-maven-gradle-plugin</code></strong>插件: 1.5版本 (具体请看下面使用)</li>
+<li><strong><code>gradle-bintray-plugin</code></strong>插件: 1.6 版本</li>
+</ul>
+<h2 id="2-注册账号"><a href="#2-注册账号" class="headerlink" title="2. 注册账号"></a>2. 注册账号</h2><p>　　首先需要在 <code>http://bintray.com/</code> 注册一个账号（自备梯子），或者使用<code>github</code>账号登录也可以。</p>
+<p>　　注册完成后，在个人 <code>[edit profile](https://bintray.com/profile/edit)</code> 页面里找到<code>API Key</code>，后面会用到这个 <code>API Key</code>。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/21/发布Android-Library项目到JCenter/#more" rel="contents">
@@ -736,9 +1597,11 @@ Android
 
       
         
-          
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
-          ...
+          <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a><br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/20/hello-world/#more" rel="contents">
@@ -820,7 +1683,7 @@ Android
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -838,7 +1701,7 @@ Android
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

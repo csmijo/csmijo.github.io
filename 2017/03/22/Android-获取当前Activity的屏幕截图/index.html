@@ -1,0 +1,1041 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,截图," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1. 概述　　该方法是通过View的方式获取当前activity的屏幕截图，并不是frameBuffer的方式，所以有一定的局限性。但是这种方法相对简单，容易理解。
+2. 使用方法
+对activity进行截图 12345678910111213141516171819202122232425262728293031323334353637/**     * Activity screenCap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 获取当前Activity的屏幕截图">
+<meta property="og:url" content="http://yoursite.com/2017/03/22/Android-获取当前Activity的屏幕截图/index.html">
+<meta property="og:site_name" content="csmijo's notes">
+<meta property="og:description" content="1. 概述　　该方法是通过View的方式获取当前activity的屏幕截图，并不是frameBuffer的方式，所以有一定的局限性。但是这种方法相对简单，容易理解。
+2. 使用方法
+对activity进行截图 12345678910111213141516171819202122232425262728293031323334353637/**     * Activity screenCap">
+<meta property="og:image" content="http://img.blog.csdn.net/20160107230943286?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2017-03-22T01:52:28.744Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 获取当前Activity的屏幕截图">
+<meta name="twitter:description" content="1. 概述　　该方法是通过View的方式获取当前activity的屏幕截图，并不是frameBuffer的方式，所以有一定的局限性。但是这种方法相对简单，容易理解。
+2. 使用方法
+对activity进行截图 12345678910111213141516171819202122232425262728293031323334353637/**     * Activity screenCap">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160107230943286?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title> Android 获取当前Activity的屏幕截图 | csmijo's notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9666bf3ba85102548e7f7986c97e44de";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=61314421";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">csmijo's notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">路漫漫其修远兮，吾将上下而求索</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/Android-获取当前Activity的屏幕截图/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="csmijo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/readDog.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="csmijo's notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android 获取当前Activity的屏幕截图
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T09:33:57+08:00">
+                2017-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/22/Android-获取当前Activity的屏幕截图/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/22/Android-获取当前Activity的屏幕截图/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/22/Android-获取当前Activity的屏幕截图/" class="leancloud_visitors" data-flag-title="Android 获取当前Activity的屏幕截图">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>　　该方法是通过View的方式获取当前activity的屏幕截图，并不是frameBuffer的方式，所以有一定的局限性。但是这种方法相对简单，容易理解。</p>
+<h2 id="2-使用方法"><a href="#2-使用方法" class="headerlink" title="2. 使用方法"></a>2. 使用方法</h2><ol>
+<li>对activity进行截图 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">     * Activity screenCap</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> activity</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Bitmap <span class="title">activityShot</span><span class="params">(Activity activity)</span> </span>&#123;</div><div class="line">        <span class="comment">/*获取windows中最顶层的view*/</span></div><div class="line">        View view = activity.getWindow().getDecorView();</div><div class="line"></div><div class="line">        <span class="comment">//允许当前窗口保存缓存信息</span></div><div class="line">        view.setDrawingCacheEnabled(<span class="keyword">true</span>);</div><div class="line">        view.buildDrawingCache();</div><div class="line"></div><div class="line">        <span class="comment">//获取状态栏高度</span></div><div class="line">        Rect rect = <span class="keyword">new</span> Rect();</div><div class="line">        view.getWindowVisibleDisplayFrame(rect);</div><div class="line">        <span class="keyword">int</span> statusBarHeight = rect.top;</div><div class="line"></div><div class="line">        WindowManager windowManager = activity.getWindowManager();</div><div class="line"></div><div class="line">        <span class="comment">//获取屏幕宽和高</span></div><div class="line">        DisplayMetrics outMetrics = <span class="keyword">new</span> DisplayMetrics();</div><div class="line">        windowManager.getDefaultDisplay().getMetrics(outMetrics);</div><div class="line">        <span class="keyword">int</span> width = outMetrics.widthPixels;</div><div class="line">        <span class="keyword">int</span> height = outMetrics.heightPixels;</div><div class="line"></div><div class="line">        <span class="comment">//去掉状态栏</span></div><div class="line">        Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache(), <span class="number">0</span>, statusBarHeight, width,</div><div class="line">                height-statusBarHeight);</div><div class="line"></div><div class="line">        <span class="comment">//销毁缓存信息</span></div><div class="line">        view.destroyDrawingCache();</div><div class="line">        view.setDrawingCacheEnabled(<span class="keyword">false</span>);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> bitmap;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<a id="more"></a>
+<ol>
+<li><p>可以将得到的bitmap格式图片保存到本地，也可以用于其他用途。下面是将bitmap保存到本地的方法。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String SCREENSHOTS_DIR_NAME = <span class="string">"screenShots"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String SCREENSHOT_FILE_NAME_TEMPLATE = <span class="string">"Screenshot%s.jpg"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String SCREENSHOT_FILE_PATH_TEMPLATE = <span class="string">"%s/%s/%s"</span>;    </div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">     * 存储到sdcard</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> bmp</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">saveToSD</span><span class="params">(Bitmap bmp)</span> </span>&#123;</div><div class="line">        <span class="comment">//判断sd卡是否存在</span></div><div class="line">        <span class="keyword">if</span> (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) &#123;</div><div class="line">            <span class="comment">//文件名</span></div><div class="line">            <span class="keyword">long</span> systemTime = System.currentTimeMillis();</div><div class="line">            String imageDate = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd-HH-mm-ss"</span>).format(<span class="keyword">new</span> Date(systemTime));</div><div class="line">            String mFileName = String.format(SCREENSHOT_FILE_NAME_TEMPLATE, imageDate);</div><div class="line"></div><div class="line">            File dir = <span class="keyword">new</span> File(SCREENSHOTS_DIR_NAME);</div><div class="line">            <span class="comment">//判断文件是否存在，不存在则创建</span></div><div class="line">            <span class="keyword">if</span> (!dir.exists()) &#123;</div><div class="line">                dir.mkdirs();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">//文件全名</span></div><div class="line">            String mstrRootPath = Environment.getExternalStorageDirectory().toString();</div><div class="line">            String mFilePath = String.format(SCREENSHOT_FILE_PATH_TEMPLATE, mstrRootPath,</div><div class="line">                    SCREENSHOTS_DIR_NAME, mFileName);</div><div class="line"></div><div class="line">            Log.i(TAG, <span class="string">"file path:"</span> + mFilePath);</div><div class="line">            File file = <span class="keyword">new</span> File(mFilePath);</div><div class="line">            <span class="keyword">if</span> (!file.exists()) &#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    file.createNewFile();</div><div class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            Log.i(TAG, <span class="string">"file path:"</span> + file.getAbsolutePath());</div><div class="line">            FileOutputStream fos = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                fos = <span class="keyword">new</span> FileOutputStream(file);</div><div class="line">                <span class="keyword">if</span> (fos != <span class="keyword">null</span>) &#123;</div><div class="line">                    <span class="comment">//第一参数是图片格式，第二参数是图片质量，第三参数是输出流</span></div><div class="line">                    bmp.compress(Bitmap.CompressFormat.PNG, <span class="number">100</span>, fos);</div><div class="line">                    fos.flush();</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125; <span class="keyword">finally</span> &#123;</div><div class="line">                <span class="keyword">if</span> (fos != <span class="keyword">null</span>) &#123;</div><div class="line">                    <span class="keyword">try</span> &#123;</div><div class="line">                        fos.close();</div><div class="line">                    &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                        e.printStackTrace();</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">return</span> mFilePath;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>注意在AndroidManifest.xml中注册写入的权限</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="3-截图时遇到的坑"><a href="#3-截图时遇到的坑" class="headerlink" title="3. 截图时遇到的坑"></a>3. 截图时遇到的坑</h2><p>　　在程序中使用上面的方法进行应用内截图，结果出现了下面的错误提示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">java.lang.IllegalArgumentException: x + width must be &lt;= bitmap.width()</div><div class="line">	at android.graphics.Bitmap.createBitmap(Bitmap.java:<span class="number">686</span>)</div><div class="line">	at android.graphics.Bitmap.createBitmap(Bitmap.java:<span class="number">654</span>)</div><div class="line">	java.lang.IllegalArgumentException: x + width must be &lt;= bitmap.width()</div><div class="line">	at android.graphics.Bitmap.createBitmap(Bitmap.java:<span class="number">686</span>)</div><div class="line">	at android.graphics.Bitmap.createBitmap(Bitmap.java:<span class="number">654</span>)</div><div class="line">	at com.csmijo.practice.utils.ScreenCap.activityShot(ScreenCap.java:<span class="number">85</span>)</div><div class="line">	at android.os.Handler.handleCallback(Handler.java:<span class="number">808</span>)</div><div class="line">	at android.os.Handler.dispatchMessage(Handler.java:<span class="number">103</span>)</div><div class="line">	at android.os.Looper.loop(Looper.java:<span class="number">193</span>)</div><div class="line">	at android.app.ActivityThread.main(ActivityThread.java:<span class="number">5532</span>)</div><div class="line">	at java.lang.reflect.Method.invokeNative(Native Method)</div><div class="line">	at java.lang.reflect.Method.invoke(Method.java:<span class="number">515</span>)</div><div class="line">	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:<span class="number">891</span>)</div><div class="line">	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:<span class="number">707</span>)</div><div class="line">	at de.robv.android.xposed.XposedBridge.main(XposedBridge.java:<span class="number">132</span>)</div><div class="line">	at dalvik.system.NativeStart.main(Native Method)</div></pre></td></tr></table></figure></p>
+<p>　　马上要提交了出现这种坑，内心马上凌乱了。Google后发现，这个错误是由于使用这个方法造成的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache(), 0, statusBarHeight, width,height-statusBarHeight);</div></pre></td></tr></table></figure></p>
+<p>这是<code>Bitmap.createBitmap(Bitmap source, int x, int y, int width, int height)</code>方法的介绍：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Returns an immutable bitmap from the specified **subset of the source</div><div class="line">bitmap**. The new bitmap may be the same object as source, or a copy</div><div class="line">may have been made. It is initialized with the same density as the original bitmap.</div></pre></td></tr></table></figure></p>
+<p>该方法返回的是source的子集，所以就要求：</p>
+<ul>
+<li>x + width &lt;= source.width</li>
+<li>y + height &lt;= source.height</li>
+</ul>
+<p>由于我的程序中是直接使用的<strong>屏幕宽度</strong>，所以出现了上面的错误。说道<strong>屏幕宽度</strong>，就引出了我下面的资料查找。</p>
+<h2 id="4-Android-获取获取屏幕高度、标题高度、状态栏高度"><a href="#4-Android-获取获取屏幕高度、标题高度、状态栏高度" class="headerlink" title="4. Android 获取获取屏幕高度、标题高度、状态栏高度"></a>4. Android 获取获取屏幕高度、标题高度、状态栏高度</h2><p><img src="http://img.blog.csdn.net/20160107230943286?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="状态栏标题栏高度测量"></p>
+<p><strong>该图片出自<a href="http://blog.csdn.net/a_running_wolf/article/details/50477965" target="_blank" rel="external">Android完美获取状态栏高度、标题栏高度、编辑区域高度的获取</a></strong></p>
+<ul>
+<li>最大的草绿色区域是<strong>屏幕区域</strong></li>
+<li>次大的红色区域是<strong>应用界面区域</strong></li>
+<li>最小的紫色区域是<strong>View绘制区域</strong></li>
+<li>屏幕顶端和应用界面顶端之间的部分为<strong>状态栏</strong></li>
+<li>应用界面顶端与view绘制区域顶端之间的部分为<strong>标题栏</strong></li>
+</ul>
+<h3 id="1-下面介绍一些获取屏幕参数的方法"><a href="#1-下面介绍一些获取屏幕参数的方法" class="headerlink" title="1. 下面介绍一些获取屏幕参数的方法"></a>1. 下面介绍一些获取屏幕参数的方法</h3><p>1.View 获取屏幕参数值的方法：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:left">影响区域</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">onSizeChanged(int w,int h,int oldw,int oldh)</td>
+<td style="text-align:left">view绘制区域</td>
+<td style="text-align:left">当前view屏幕宽高发生变化时调用，传递view的宽高，其中高度不包括标题高度</td>
+</tr>
+<tr>
+<td style="text-align:center">getWidth()</td>
+<td style="text-align:left">view绘制区域</td>
+<td style="text-align:left">返回view的宽度</td>
+</tr>
+<tr>
+<td style="text-align:center">getHeight()</td>
+<td style="text-align:left">view绘制区域</td>
+<td style="text-align:left">返回view的高度，<strong>不包括标题在内</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">getWindowVisibleDisplayFrame(Rect outRect)</td>
+<td style="text-align:left">应用界面区域</td>
+<td style="text-align:left">返回宽度和View的宽度相等，高度=view的高度 + 标题的高度</td>
+</tr>
+<tr>
+<td style="text-align:center">getDrawingRect(Rect outRect)</td>
+<td style="text-align:left">view绘制区域</td>
+<td style="text-align:left">返回绘制区域的区域值，宽度和高度都和view的相等</td>
+</tr>
+</tbody>
+</table>
+<p>2.Canvas对象获取画布宽高，由view的draw函数传递canvas对象，也是在view中创建</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">影响区域</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">canvas.getWidth()</td>
+<td style="text-align:left">屏幕区域</td>
+<td style="text-align:left">返回画布的宽度，即屏幕的宽度</td>
+</tr>
+<tr>
+<td style="text-align:left">canvas.getHeight()</td>
+<td style="text-align:left">屏幕区域</td>
+<td style="text-align:left">返回画布的高度，即屏幕的高度</td>
+</tr>
+</tbody>
+</table>
+<p>3.Display对象获取屏幕宽高</p>
+<p><strong>通过Activity的<code>getWindowManager.getDefaultDisplay()</code>方法可以获取到<code>display</code>对象</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">影响区域</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">display.getWidth()</td>
+<td style="text-align:left">屏幕区域</td>
+<td style="text-align:left">返回界面的宽度，即屏幕的宽度</td>
+</tr>
+<tr>
+<td style="text-align:left">display.getHeight()</td>
+<td style="text-align:left">屏幕区域</td>
+<td style="text-align:left">返回界面的高度，即屏幕的高度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-状态栏高度的测量"><a href="#2-状态栏高度的测量" class="headerlink" title="2. 状态栏高度的测量"></a>2. 状态栏高度的测量</h3><p><strong>1.方法一：通过系统尺寸资源获取</strong></p>
+<p>　　状态栏高度定义在Android系统尺寸资源中<code>status_bar_height</code>，但这并不是公开可直接使用的，例如像通常使用系统资源那样<code>android.R.dimen.status_bar_height</code>。但是系统给我们提供了一个<code>Resource</code>类，通过这个类可以获取资源文件，借此可以获取到status_bar_height：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getStatusBarHeight</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> statusBarHeight = -<span class="number">1</span>;</div><div class="line">		<span class="comment">/* 获取status_bar_height的资源ID*/</span></div><div class="line">		<span class="keyword">int</span> resourceId = context.getResources().getIdentifier(</div><div class="line">				<span class="string">"status_bar_height"</span>, <span class="string">"dimen"</span>, <span class="string">"android"</span>);</div><div class="line">		<span class="keyword">if</span> (resourceId &gt; <span class="number">0</span>) &#123;</div><div class="line">			<span class="comment">// 根据资源ID获取响应的尺寸值</span></div><div class="line">			statusBarHeight = context.getResources().getDimensionPixelSize(</div><div class="line">					resourceId);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> statusBarHeight;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p><strong>2.方法二：通过R类的反射</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public static int getStatusBarHeight(Context context) &#123;</div><div class="line">		int statusBarHeight = -1;  </div><div class="line">        try &#123;  </div><div class="line">            Class&lt;?&gt; clazz = Class.forName(&quot;com.android.internal.R$dimen&quot;);  </div><div class="line">            Object object = clazz.newInstance();  </div><div class="line">            int height = Integer.parseInt(clazz.getField(&quot;status_bar_height&quot;)  </div><div class="line">                    .get(object).toString());  </div><div class="line">            statusBarHeight = getResources().getDimensionPixelSize(height);  </div><div class="line">        &#125; catch (Exception e) &#123;  </div><div class="line">            e.printStackTrace();  </div><div class="line">        &#125;  </div><div class="line">		return statusBarHeight;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p><strong>3.方法三：利用应用区域Top属性</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public static int getStatusBarHeight(Context context) &#123;</div><div class="line">        /*获取windows中最顶层的view*/</div><div class="line">        View view = activity.getWindow().getDecorView();</div><div class="line">  </div><div class="line">        //获取状态栏高度</div><div class="line">        Rect rect = new Rect();</div><div class="line">        view.getWindowVisibleDisplayFrame(rect);</div><div class="line">        int statusBarHeight = rect.top;</div><div class="line">		return statusBarHeight;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<p>　　如果单单获取statusBar高度而不获取titleBar高度时，这种方法并不推荐大家使用，<strong>因为这种方法依赖于WMS（窗口管理服务的回调）</strong>。正是因为窗口回调机制，所以在Activity初始化时执行此方法得到的高度是0。这个方法<strong>推荐在回调方法<code>onWindowFocusChanged()</code>中执行</strong>，才能得到预期结果。</p>
+<h3 id="3-标题栏高度的测量"><a href="#3-标题栏高度的测量" class="headerlink" title="3. 标题栏高度的测量"></a>3. 标题栏高度的测量</h3><p>　　正如上面介绍的，<strong>应用界面顶端</strong>与<strong>view绘制区域顶端之间</strong>的部分为<strong>标题栏</strong>。所以自然会想到两种测量标题栏高度的方法：一个是使用<code>Top-Top</code>，另一个就是使用<code>高度-高度</code>。先介绍一下获取各区域宽高的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">//屏幕区域</div><div class="line">DisplayMetrics outMetrics = new DisplayMetrics();</div><div class="line">WindowManager windowManager = activity.getWindowManager();</div><div class="line">windowManager.getDefaultDisplay().getMetrics(outMetrics);</div><div class="line">int width = outMetrics.widthPixels;    //屏幕宽度</div><div class="line">int height = outMetrics.heightPixels;    //屏幕高度</div><div class="line">   </div><div class="line">//应用界面区域</div><div class="line">View view = activity.getWindow().getDecorView();</div><div class="line">Rect rect = new Rect();</div><div class="line">view.getWindowVisibleDisplayFrame(rect); </div><div class="line">int appTop = rect.top;    //状态栏高度，也是应用界面顶部的高度值</div><div class="line">int appHeight = rect.height();    //应用界面高度</div><div class="line"></div><div class="line"></div><div class="line">//view绘制区域</div><div class="line">Rect outRect2 = new Rect();  </div><div class="line">activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT).getDrawingRect(outRect2);   </div><div class="line">int viewTop = getWindow().findViewById(Window.ID_ANDROID_CONTENT).getTop();  //view绘制区域顶部的高度值</div><div class="line">int viewHeight = outRect2.height();   //view绘制界面的高度</div></pre></td></tr></table></figure></p>
+<p><strong>1. 方法一：Top-Top</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 标题栏高度 = view绘制区域顶端高度值 - 应用界面区域顶端高度值 </div><div class="line"> */</div><div class="line"> int titleHeight = viewTop - appTop;</div></pre></td></tr></table></figure></p>
+<p><strong>2. 方法二：高度- 高度</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 标题栏高度 = 应用界面区域高度 - view绘制区域高度</div><div class="line"> */</div><div class="line"> int titleHeight =  appHeight - viewHeight;</div></pre></td></tr></table></figure>
+<h3 id="4-注意事项"><a href="#4-注意事项" class="headerlink" title="4. 注意事项"></a>4. 注意事项</h3><ol>
+<li><p>不管你是否设置全屏模式，或是不显示标题栏，在使用<strong>获取状态栏高度方法1</strong>和<strong>获取状态栏高度方法2都会测量到状态栏的高度</strong>，理解原理就不难解释——系统资源属性是固定的、真实的，不管你是否隐瞒（隐藏或者显示），它都在那里；</p>
+</li>
+<li><p>是若使用<strong>获取状态栏高度方法3</strong>，以及<strong>获取标题栏高度方法1和获取标题栏高度方法2</strong>，<strong>都是依赖于WMS，是在界面构建后根据View获取的，所以显示了就有高度，不显示自然没高度了</strong>。</p>
+</li>
+</ol>
+<hr>
+<p>[参考文献]</p>
+<ul>
+<li><a href="http://my.oschina.net/neil173352/blog/308353" target="_blank" rel="external">Android开发 获取当前activity的屏幕截图</a></li>
+<li><a href="https://www.zybuluo.com/olunx/note/18021" target="_blank" rel="external">Android屏幕截图那些事</a></li>
+<li><a href="http://ask.csdn.net/questions/344" target="_blank" rel="external">java.lang.IllegalArgumentException: x 一定要小于 bitmap.width()</a></li>
+<li><a href="http://blog.csdn.net/a_running_wolf/article/details/50477965" target="_blank" rel="external">Android完美获取状态栏高度、标题栏高度、编辑区域高度的获取</a></li>
+<li><a href="http://www.iteye.com/topic/828830" target="_blank" rel="external">Android 获取屏幕高度、标题高度、状态栏高度详解</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/截图/" rel="tag"># 截图</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/22/反编译详解/" rel="next" title="反编译详解">
+                <i class="fa fa-chevron-left"></i> 反编译详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/22/Android内存泄露/" rel="prev" title="Android内存泄露">
+                Android内存泄露 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/03/22/Android-获取当前Activity的屏幕截图/"
+     data-title="Android 获取当前Activity的屏幕截图"
+     data-content=""
+     data-url="http://yoursite.com/2017/03/22/Android-获取当前Activity的屏幕截图/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/22/Android-获取当前Activity的屏幕截图/"
+           data-title="Android 获取当前Activity的屏幕截图" data-url="http://yoursite.com/2017/03/22/Android-获取当前Activity的屏幕截图/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/readDog.png"
+               alt="csmijo" />
+          <p class="site-author-name" itemprop="name">csmijo</p>
+           
+              <p class="site-description motion-element" itemprop="description">测试开发 | Android</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/csmijo" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/e7613170c06c" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-home"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概述"><span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-使用方法"><span class="nav-text">2. 使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-截图时遇到的坑"><span class="nav-text">3. 截图时遇到的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Android-获取获取屏幕高度、标题高度、状态栏高度"><span class="nav-text">4. Android 获取获取屏幕高度、标题高度、状态栏高度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-下面介绍一些获取屏幕参数的方法"><span class="nav-text">1. 下面介绍一些获取屏幕参数的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-状态栏高度的测量"><span class="nav-text">2. 状态栏高度的测量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-标题栏高度的测量"><span class="nav-text">3. 标题栏高度的测量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-注意事项"><span class="nav-text">4. 注意事项</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">csmijo</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"csmijogithubio"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("STiYsX2zGYEk1zQNJ2TuEUnz-gzGzoHsz", "E5dh7bY902pO6YVkv9U6o0nC");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
