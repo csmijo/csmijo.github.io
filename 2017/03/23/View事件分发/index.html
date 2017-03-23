@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android,longPress," />
+  <meta name="keywords" content="Android,事件分发," />
 
 
 
@@ -87,19 +87,25 @@
 
 
 
-<meta name="description" content="A. 方法一 （不是最优）1. 欲实现的效果　　Android提供了GestureDetector类来处理一些常用的手势操作，比如说 onLongPress,onFling 等。但这里不使用GestureDetector，而是直接在自定义View重写的onTouchEvent中进行处理。
-　　欲实现的效果是：当手机按住屏幕时，如果在指定的时间内没有移动（如500毫秒）,那么进入长按模式，此时手指在">
+<meta name="description" content="1. 基础知识(1) 所有 Touch事件都被封装成 MotionEvent 对象，包括 Touch的位置、时间、历史记录以及第几个手指(多指触摸)等。
+(2) 事件类型分为: ACTION_DOWN,ACTION_UP,ACTION_MOVE,ACTION_POINTER_DOWN,ACTION_POINTER_UP,ACTION_CANCEL，每个事件都是以ACTION_DOWN开始，ACTI">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在onTouchEvent中处理任意时间的长按事件">
-<meta property="og:url" content="http://yoursite.com/2017/03/22/在onTouchEvent中处理任意时间的长按事件/index.html">
+<meta property="og:title" content="View事件分发">
+<meta property="og:url" content="http://yoursite.com/2017/03/23/View事件分发/index.html">
 <meta property="og:site_name" content="csmijo's notes">
-<meta property="og:description" content="A. 方法一 （不是最优）1. 欲实现的效果　　Android提供了GestureDetector类来处理一些常用的手势操作，比如说 onLongPress,onFling 等。但这里不使用GestureDetector，而是直接在自定义View重写的onTouchEvent中进行处理。
-　　欲实现的效果是：当手机按住屏幕时，如果在指定的时间内没有移动（如500毫秒）,那么进入长按模式，此时手指在">
-<meta property="og:updated_time" content="2017-03-23T01:52:26.802Z">
+<meta property="og:description" content="1. 基础知识(1) 所有 Touch事件都被封装成 MotionEvent 对象，包括 Touch的位置、时间、历史记录以及第几个手指(多指触摸)等。
+(2) 事件类型分为: ACTION_DOWN,ACTION_UP,ACTION_MOVE,ACTION_POINTER_DOWN,ACTION_POINTER_UP,ACTION_CANCEL，每个事件都是以ACTION_DOWN开始，ACTI">
+<meta property="og:image" content="http://on9czqsf5.bkt.clouddn.com/8c3c87fa4a51390188c96941df33e440.png?2017-03-23-17-50-31">
+<meta property="og:image" content="http://on9czqsf5.bkt.clouddn.com/8c3c87fa4a51390188c96941df33e440.png?2017-03-23-17-50-31">
+<meta property="og:image" content="http://on9czqsf5.bkt.clouddn.com/20160718094855_87.png?2017-03-23-18-07-01">
+<meta property="og:image" content="http://on9czqsf5.bkt.clouddn.com/e942905c28c693d853cbf22ccd758a1f.jpg?2017-03-23-18-07-36">
+<meta property="og:image" content="http://on9czqsf5.bkt.clouddn.com/20160718094856_363.png?2017-03-23-18-08-04">
+<meta property="og:updated_time" content="2017-03-23T10:08:15.640Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在onTouchEvent中处理任意时间的长按事件">
-<meta name="twitter:description" content="A. 方法一 （不是最优）1. 欲实现的效果　　Android提供了GestureDetector类来处理一些常用的手势操作，比如说 onLongPress,onFling 等。但这里不使用GestureDetector，而是直接在自定义View重写的onTouchEvent中进行处理。
-　　欲实现的效果是：当手机按住屏幕时，如果在指定的时间内没有移动（如500毫秒）,那么进入长按模式，此时手指在">
+<meta name="twitter:title" content="View事件分发">
+<meta name="twitter:description" content="1. 基础知识(1) 所有 Touch事件都被封装成 MotionEvent 对象，包括 Touch的位置、时间、历史记录以及第几个手指(多指触摸)等。
+(2) 事件类型分为: ACTION_DOWN,ACTION_UP,ACTION_MOVE,ACTION_POINTER_DOWN,ACTION_POINTER_UP,ACTION_CANCEL，每个事件都是以ACTION_DOWN开始，ACTI">
+<meta name="twitter:image" content="http://on9czqsf5.bkt.clouddn.com/8c3c87fa4a51390188c96941df33e440.png?2017-03-23-17-50-31">
 
 
 
@@ -131,7 +137,7 @@
 
 
 
-  <title> 在onTouchEvent中处理任意时间的长按事件 | csmijo's notes </title>
+  <title> View事件分发 | csmijo's notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -279,7 +285,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/在onTouchEvent中处理任意时间的长按事件/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/23/View事件分发/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="csmijo">
@@ -300,7 +306,7 @@
             
             
               
-                在onTouchEvent中处理任意时间的长按事件
+                View事件分发
               
             
           </h1>
@@ -315,8 +321,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T09:42:11+08:00">
-                2017-03-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-23T09:57:34+08:00">
+                2017-03-23
               </time>
             
 
@@ -367,8 +373,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/22/在onTouchEvent中处理任意时间的长按事件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/22/在onTouchEvent中处理任意时间的长按事件/" itemprop="commentCount"></span>
+                <a href="/2017/03/23/View事件分发/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/23/View事件分发/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -376,7 +382,7 @@
 
           
           
-             <span id="/2017/03/22/在onTouchEvent中处理任意时间的长按事件/" class="leancloud_visitors" data-flag-title="在onTouchEvent中处理任意时间的长按事件">
+             <span id="/2017/03/23/View事件分发/" class="leancloud_visitors" data-flag-title="View事件分发">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -405,20 +411,94 @@
       
 
       
-        <h2 id="A-方法一-（不是最优）"><a href="#A-方法一-（不是最优）" class="headerlink" title="A. 方法一 （不是最优）"></a>A. 方法一 （不是最优）</h2><h3 id="1-欲实现的效果"><a href="#1-欲实现的效果" class="headerlink" title="1. 欲实现的效果"></a>1. 欲实现的效果</h3><p>　　Android提供了GestureDetector类来处理一些常用的手势操作，比如说 onLongPress,onFling 等。但这里不使用GestureDetector，而是直接在自定义View重写的onTouchEvent中进行处理。</p>
-<p>　　欲实现的效果是：当手机按住屏幕时，如果在指定的时间内没有移动（如500毫秒）,那么进入长按模式，此时手指在屏幕上移动都算作长按模式。如果手机按住屏幕就立马移动，那么就算作移动模式。</p>
-<h3 id="2-使用的方法"><a href="#2-使用的方法" class="headerlink" title="2. 使用的方法"></a>2. 使用的方法</h3><p>　　MotionEvent 类提供了记录当前坐标的函数（<strong>getX()</strong>,<strong>getY()</strong>）和当前事件产生的时间的函数（<strong>getEventTime()</strong>）以及按下时间（<strong>getDowntime()</strong>）。MotionEvent同时也提供了当前的操作类型，按下（ACTION_DOWN）、 移动 （ACTION_MOVE）、弹起 （ACTION_UP）。有了这些参数，我们便可以轻易的实现想要的效果了。<br><a id="more"></a></p>
-<h3 id="3-实现思路"><a href="#3-实现思路" class="headerlink" title="3. 实现思路"></a>3. 实现思路</h3><p>　　在按下时记录x,y坐标以及按下时间，当第一次移动的时候获取移动的时间，如果大于指定的长按时间，那么进入长按模式，否则就是普通的移动模式。很容易，在模拟器里面实现了这个效果，但是当在真机里面运行时，却无法实现这样的效果。原来模拟器点击的时候能够保证在不移动鼠标的情况下不触发ACTION_MOVE，但是真机却很敏感，几乎在ACTION_DOWN后的几毫秒之后就立马不停的ACTION_MOVE了。想了一下，其实只要稍微变通下变可以在真机上也实现相同的效果了。那就是判断ACTION_MOVE后的坐标和ACTION_DOWN的坐标的偏移值是否小于我们指定的偏移像素，如果在指定值内，那么认为没有移动。于是有了如下这个函数。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">	 * * 判断是否有长按动作发生 * <span class="doctag">@param</span> lastX 按下时X坐标 * <span class="doctag">@param</span> lastY 按下时Y坐标 *</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> thisX</div><div class="line">	 *            移动时X坐标 *</div><div class="line">	 * <span class="doctag">@param</span> thisY</div><div class="line">	 *            移动时Y坐标 *</div><div class="line">	 * <span class="doctag">@param</span> lastDownTime</div><div class="line">	 *            按下时间 *</div><div class="line">	 * <span class="doctag">@param</span> thisEventTime</div><div class="line">	 *            移动时间 *</div><div class="line">	 * <span class="doctag">@param</span> longPressTime</div><div class="line">	 *            判断长按时间的阀值</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isLongPressed</span><span class="params">(<span class="keyword">float</span> lastX, <span class="keyword">float</span> lastY, <span class="keyword">float</span> thisX,</span></span></div><div class="line">			<span class="keyword">float</span> thisY, <span class="keyword">long</span> lastDownTime, <span class="keyword">long</span> thisEventTime,</div><div class="line">			<span class="keyword">long</span> longPressTime) &#123;</div><div class="line">		<span class="keyword">float</span> offsetX = Math.abs(thisX - lastX);</div><div class="line">		<span class="keyword">float</span> offsetY = Math.abs(thisY - lastY);</div><div class="line">		<span class="keyword">long</span> intervalTime = thisEventTime - lastDownTime;</div><div class="line">		<span class="keyword">if</span> (offsetX &lt;= <span class="number">10</span> &amp;&amp; offsetY &lt;= <span class="number">10</span> &amp;&amp; intervalTime &gt;= longPressTime) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<p>　　在ACTION_DOWN的时候，记录下lastX，lastY和lastDownTime，使用getEventTime()，在ACTION_MOVE的时候判断当前是否为长按模式(类标志变量的方式)，如果不是，那么获取当前的thisX，thisY和thisEventTime调用函数进行判断。最后别忘记在ACTION_UP里将长按标志值为FALSE。ACTION_DOWN里面这样处理:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//检测是否长按,在非长按时检测 </span></div><div class="line">	<span class="keyword">if</span>(!mIsLongPressed)&#123; </div><div class="line">		mIsLongPressed = isLongPressed(mLastMotionX, mLastMotionY, x, y, lastDownTime,eventTime,<span class="number">500</span>); </div><div class="line">		&#125; </div><div class="line">	<span class="keyword">if</span>(mIsLongPressed)&#123;  </div><div class="line">		<span class="comment">//长按模式所做的事 </span></div><div class="line">		&#125;<span class="keyword">else</span>&#123;  </div><div class="line">			<span class="comment">//移动模式所做的事</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="B-方法二（最优）"><a href="#B-方法二（最优）" class="headerlink" title="B. 方法二（最优）"></a>B. 方法二（最优）</h2><h3 id="1-方法一缺点"><a href="#1-方法一缺点" class="headerlink" title="1. 方法一缺点"></a>1. 方法一缺点</h3><p>　　在使用方法一实现长按弹出Dialog的过程中，总是会出现弹出多个Dialog的情况，但是Debug时正确。具体原因还需进一步寻找。。。。。</p>
-<h3 id="2-实现思路"><a href="#2-实现思路" class="headerlink" title="2. 实现思路"></a>2. 实现思路</h3><p>　　该方法在ActionDown的时候，postDelay一个Runnable出去，delay的时间就是长按的时间，然后在move超过一定距离或者up 的时候，把这个delay的runnable移除掉，就可以达到长按的效果。</p>
-<h3 id="3-实现代码"><a href="#3-实现代码" class="headerlink" title="3. 实现代码"></a>3. 实现代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</div><div class="line">        <span class="keyword">switch</span> (event.getAction()) &#123;</div><div class="line">            <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</div><div class="line">                touchView = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">                startX = (<span class="keyword">int</span>) event.getX();</div><div class="line">                startY = (<span class="keyword">int</span>) event.getY();</div><div class="line">                startTime = event.getDownTime();</div><div class="line"></div><div class="line">                <span class="keyword">if</span> (hasView(startX, startY)) &#123;</div><div class="line">                   </div><div class="line">                    <span class="comment">/* 长按操作 */</span> </div><div class="line">                    mHandler.postDelayed(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">                        <span class="meta">@Override</span></div><div class="line">                        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                            longPressedAlertDialog();</div><div class="line">                        &#125;</div><div class="line">                    &#125;, PRESSREANGE);</div><div class="line">                &#125; </div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> MotionEvent.ACTION_MOVE:</div><div class="line">                <span class="keyword">int</span> lastX = (<span class="keyword">int</span>) event.getX();</div><div class="line">                <span class="keyword">int</span> lastY = (<span class="keyword">int</span>) event.getY();</div><div class="line">                <span class="comment">//移动</span></div><div class="line">                moveView(lastX, lastY);</div><div class="line"></div><div class="line">                <span class="keyword">if</span> (Math.abs(lastX - startX) &gt; CLICKRANGE || Math.abs(lastY - startY) &gt; CLICKRANGE) &#123;</div><div class="line">                    <span class="keyword">this</span>.mHandler.removeCallbacksAndMessages(<span class="keyword">null</span>);</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> MotionEvent.ACTION_UP:</div><div class="line">                <span class="keyword">this</span>.mHandler.removeCallbacksAndMessages(<span class="keyword">null</span>);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+        <h2 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1. 基础知识"></a>1. 基础知识</h2><p>(1) 所有 <code>Touch</code>事件都被封装成 <code>MotionEvent</code> 对象，包括 Touch的位置、时间、历史记录以及第几个手指(多指触摸)等。</p>
+<p>(2) 事件类型分为: <code>ACTION_DOWN</code>,<code>ACTION_UP</code>,<code>ACTION_MOVE</code>,<code>ACTION_POINTER_DOWN</code>,<br><code>ACTION_POINTER_UP</code>,<code>ACTION_CANCEL</code>，每个事件都是以<code>ACTION_DOWN</code>开始，<code>ACTION_UP</code>结束的。<br>(3) 对事件的处理包括三类：</p>
+<ul>
+<li>传递——<code>dispatchTouchEvent()</code></li>
+<li>拦截——<code>onInterceptTouchEvent()</code></li>
+<li>消费——<code>onTouchEvent()</code>和<code>onTouchListener()</code>，<code>onTouchListener()</code>优先于 <code>onTouchEvent()</code>对事件进行消费。</li>
+</ul>
+<a id="more"></a>
+<h2 id="2-图解Android-事件分发机制"><a href="#2-图解Android-事件分发机制" class="headerlink" title="2. 图解Android 事件分发机制"></a>2. 图解Android 事件分发机制</h2><h3 id="1-Android-事件分发流"><a href="#1-Android-事件分发流" class="headerlink" title="1. Android 事件分发流"></a>1. Android 事件分发流</h3><p><img src="http://on9czqsf5.bkt.clouddn.com/8c3c87fa4a51390188c96941df33e440.png?2017-03-23-17-50-31" alt="8c3c87fa4a51390188c96941df33e440.png"></p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>仔细看的话，图分为3层，从上往下依次是Activity、ViewGroup、View</li>
+<li>事件从左上角那个白色箭头开始，由Activity的<strong>dispatchTouchEvent</strong>做分发</li>
+<li>箭头的上面字代表方法返回值，(return true、return false、return super.xxxxx()),super 的意思是调用父类实现。</li>
+<li><code>dispatchTouchEvent</code>和 <code>onTouchEvent</code>的框里有个【true—-&gt;消费】的字，表示的意思是如果方法返回true，那么代表事件就此消费，不会继续往别的地方传了，事件终止。</li>
+<li>Activity 的<code>dispatchTouchEvent</code> 无论返回什么，<strong>都会调用ViewGroup</strong> 的<code>dispatchTouchEvent</code>（自行看源码）</li>
+</ul>
+<h3 id="2-详细分析"><a href="#2-详细分析" class="headerlink" title="2. 详细分析"></a>2. 详细分析</h3><h4 id="1-如果事件不被中断，整个事件流向是一个类U型图"><a href="#1-如果事件不被中断，整个事件流向是一个类U型图" class="headerlink" title="1. 如果事件不被中断，整个事件流向是一个类U型图"></a>1. 如果事件不被中断，整个事件流向是一个类U型图</h4><p><img src="http://on9czqsf5.bkt.clouddn.com/8c3c87fa4a51390188c96941df33e440.png?2017-03-23-17-50-31" alt="8c3c87fa4a51390188c96941df33e440.png"></p>
+<p>所以如果我们<strong>没有对控件里面的方法进行重写或更改返回值</strong>，而直接用super调用父类的默认实现，那么整个事件流向应该是从<strong>Activity—-&gt;ViewGroup—&gt;View 从上往下调用dispatchTouchEvent方法</strong>，一直到叶子节点（View）的时候，再由<strong>View—&gt;ViewGroup—&gt;Activity从下往上调用onTouchEvent方法</strong>。</p>
+<h4 id="2-dispatchTouchEvent-和-onTouchEvent-一旦return-true-事件就停止传递了（到达终点）（没有谁能再收到这个事件）"><a href="#2-dispatchTouchEvent-和-onTouchEvent-一旦return-true-事件就停止传递了（到达终点）（没有谁能再收到这个事件）" class="headerlink" title="2. dispatchTouchEvent 和 onTouchEvent 一旦return true,事件就停止传递了（到达终点）（没有谁能再收到这个事件）"></a>2. <code>dispatchTouchEvent</code> 和 <code>onTouchEvent</code> 一旦<code>return true</code>,事件就停止传递了（到达终点）（没有谁能再收到这个事件）</h4><p>看下图中只要<strong>return true</strong>事件就没再继续传下去了，对于return true我们经常说事件被消费了，消费了的意思就是事件走到这里就是终点，不会往下传，没有谁能再收到这个事件了。</p>
+<p><img src="http://on9czqsf5.bkt.clouddn.com/20160718094855_87.png?2017-03-23-18-07-01" alt="20160718094855_87.png"></p>
+<h4 id="3-dispatchTouchEvent-和-onTouchEvent-return-false-的时候事件都回传给父控件的onTouchEvent处理。"><a href="#3-dispatchTouchEvent-和-onTouchEvent-return-false-的时候事件都回传给父控件的onTouchEvent处理。" class="headerlink" title="3. dispatchTouchEvent 和 onTouchEvent return false 的时候事件都回传给父控件的onTouchEvent处理。"></a>3. <code>dispatchTouchEvent</code> 和 <code>onTouchEvent</code> <code>return false</code> 的时候事件都回传给父控件的<code>onTouchEvent</code>处理。</h4><p><img src="http://on9czqsf5.bkt.clouddn.com/e942905c28c693d853cbf22ccd758a1f.jpg?2017-03-23-18-07-36" alt="e942905c28c693d853cbf22ccd758a1f.jpg"></p>
+<p>看上图深蓝色的线，对于返回false的情况，事件都是传给父控件onTouchEvent处理。</p>
+<ul>
+<li>对于<strong>dispatchTouchEvent return false</strong> 的<strong>含义应该是</strong>：事件停止往子View传递和分发同时开始往父控件回溯（父控件的onTouchEvent开始从下往上回传直到某个onTouchEvent return true），事件分发机制就像递归，<strong>return false 的意义就是递归停止然后开始回溯</strong>。</li>
+<li>对于<strong>onTouchEvent return false</strong>  就比较简单了，它就是不消费事件，并让事件继续往父控件的方向从下往上流动。</li>
+</ul>
+<h4 id="4-onInterceptTouchEvent-的作用"><a href="#4-onInterceptTouchEvent-的作用" class="headerlink" title="4. onInterceptTouchEvent 的作用"></a>4. <code>onInterceptTouchEvent</code> 的作用</h4><p><img src="http://on9czqsf5.bkt.clouddn.com/20160718094856_363.png?2017-03-23-18-08-04" alt="20160718094856_363.png"></p>
+<p><code>Intercept</code> 的意思就拦截，每个<code>ViewGroup</code>每次在做分发的时候，问一问拦截器要不要拦截（也就是问问自己这个事件要不要自己来处理）</p>
+<ul>
+<li>如果要自己处理那就在<code>onInterceptTouchEvent()</code>方法中 <strong>return true</strong> 就会交给自己的<code>onTouchEvent()</code>的处理</li>
+<li>如果不拦截就是继续往子控件往下传。<strong>默认是不会去拦截的</strong>，因为子View也需要这个事件，所以<code>onInterceptTouchEvent()</code>拦截器<code>return super.onInterceptTouchEvent()</code>和<code>return false</code>是一样的，是不会拦截的，事件会继续往子View的<code>dispatchTouchEvent()</code>传递。</li>
+</ul>
+<h4 id="5-ViewGroup-和View-的dispatchTouchEvent方法返回super-dispatchTouchEvent-的时候事件流走向。"><a href="#5-ViewGroup-和View-的dispatchTouchEvent方法返回super-dispatchTouchEvent-的时候事件流走向。" class="headerlink" title="5. ViewGroup 和View 的dispatchTouchEvent方法返回super.dispatchTouchEvent()的时候事件流走向。"></a>5. ViewGroup 和View 的dispatchTouchEvent方法返回super.dispatchTouchEvent()的时候事件流走向。</h4><p><strong>ViewGroup 的dispatchTouchEvent():</strong>，</p>
+<ul>
+<li><strong>return true</strong> 是终结传递。</li>
+<li><strong>return false</strong> 是回溯到父View的 <code>onTouchEvent()</code></li>
+<li>ViewGroup 通过 <strong>super()</strong> 方法调用 <code>onInterceptTouchEvent()</code>，从而把事件拦截下来给自己的onTouchEvent()</li>
+</ul>
+<p><strong>View 的 dispatchTouchEvent()</strong> </p>
+<ul>
+<li><strong>return true</strong> 是终结</li>
+<li><strong>return false</strong> 是回溯会父类的<code>onTouchEvent()</code></li>
+<li><strong>return super.dispatchTouchEvent()</strong>,View类的<code>dispatchTouchEvent()</code>方法<strong>默认实现就是</strong>能帮你调用View自己的<code>onTouchEvent()</code>方法的。</li>
+</ul>
+<p><strong>总结一下</strong>：</p>
+<ul>
+<li>对于 <code>dispatchTouchEvent()</code>，<code>onTouchEvent()</code>，<code>return true</code> 是终结事件传递。<code>return false</code> 是回溯到父View的<code>onTouchEvent()</code>方法。</li>
+<li>ViewGroup 想把自己分发给自己的<code>onTouchEvent()</code>，需要拦截器<code>onInterceptTouchEvent()</code>方法<code>return true</code> 把事件拦截下来。</li>
+<li>ViewGroup 的拦截器<code>onInterceptTouchEvent()</code> <strong>默认是不拦截</strong>的，所以<code>return super.onInterceptTouchEvent()=return false</code>；</li>
+<li>View 没有拦截器，为了让View可以把事件分发给自己的<code>onTouchEvent()</code>，View的<code>dispatchTouchEvent()</code>默认实现（super）就是把事件分发给自己的<code>onTouchEvent()</code>。</li>
+</ul>
+<h2 id="3-ACTION-DOWN-事件传递总结"><a href="#3-ACTION-DOWN-事件传递总结" class="headerlink" title="3. ACTION_DOWN 事件传递总结"></a>3. ACTION_DOWN 事件传递总结</h2><ol>
+<li><p><strong>ViewGroup和View 的dispatchTouchEvent 是做事件分发，那么这个事件可能分发出去的四个目标</strong></p>
+<p> 注：——&gt; 后面代表事件目标需要怎么做。</p>
+<ol>
+<li>自己消费，终结传递。——-&gt;return true ；</li>
+<li>给自己的onTouchEvent处理——-&gt; 调用super.dispatchTouchEvent()系统默认会去调用 onInterceptTouchEvent，在onInterceptTouchEvent return true就会去把事件分给自己的onTouchEvent处理。</li>
+<li>传给子View——&gt;调用super.dispatchTouchEvent()默认实现会去调用 onInterceptTouchEvent 在onInterceptTouchEvent return false，就会把事件传给子类。</li>
+<li><p>不传给子View，事件终止往下传递，事件开始回溯，从父View的onTouchEvent开始事件从下到上回归执行每个控件的onTouchEvent——-&gt;return false；</p>
+<p><strong>注：</strong> 由于View没有子View所以不需要onInterceptTouchEvent 来控件是否把事件传递给子View还是拦截，所以View的事件分发调用super.dispatchTouchEvent()的时候默认把事件传给自己的onTouchEvent处理（相当于拦截），对比ViewGroup的dispatchTouchEvent 事件分发，View的事件分发没有上面提到的4个目标的第3点。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>ViewGroup和View的onTouchEvent方法是做事件处理的，那么这个事件只能有两个处理方式：</strong></p>
+<ol>
+<li>自己消费掉，事件终结，不再传给谁—–&gt;return true;</li>
+<li>继续从下往上传，不消费事件，让父View也能收到到这个事件—–&gt;return false;<strong>View的默认实现是不消费的。所以super==false。</strong></li>
+</ol>
+</li>
+<li><p><strong>ViewGroup的onInterceptTouchEvent方法对于事件有两种情况：</strong></p>
+<ol>
+<li>拦截下来，给自己的onTouchEvent处理—&gt;return true;</li>
+<li>不拦截，把事件往下传给子View—-&gt;return false,<strong>ViewGroup默认是不拦截的，所以super==false；</strong></li>
+</ol>
+</li>
+</ol>
+<h2 id="4-关于-ACTION-MOVE-和-ACTION-UP"><a href="#4-关于-ACTION-MOVE-和-ACTION-UP" class="headerlink" title="4. 关于 ACTION_MOVE 和 ACTION_UP"></a>4. 关于 ACTION_MOVE 和 ACTION_UP</h2><ol>
+<li>简单的说，就是当<code>dispatchTouchEvent()</code>在进行事件分发的时候，<strong>只有前一个事件（如ACTION_DOWN）返回true</strong>，才会收到ACTION_MOVE和ACTION_UP的事件。</li>
+<li><strong>如果在某个控件的dispatchTouchEvent() 返回true消费终结事件</strong>，那么收到ACTION_DOWN 的dispatchTouchEvent()函数也能收到 ACTION_MOVE和ACTION_UP。</li>
+<li><strong>对于在onTouchEvent消费事件的情况</strong>：在哪个View的onTouchEvent 返回true，那么ACTION_MOVE和ACTION_UP的事件从上往下传到这个View后就不再往下传递了，而直接传给自己的onTouchEvent 并结束本次事件传递过程。</li>
+</ol>
 <hr>
 <p>[参考文献]</p>
 <ul>
-<li><a href="http://blog.csdn.net/eoeandroida/article/details/8308877" target="_blank" rel="external">Android开发：在onTouchEvent中处理任意时间的长按事件</a></li>
+<li><a href="http://b.codekk.com/blogs/detail/54cfab086c4761e5001b253e" target="_blank" rel="external">公共技术点之 View 事件传递</a></li>
+<li><a href="http://www.jianshu.com/p/2be492c1df96" target="_blank" rel="external">可能是讲解Android事件分发最好的文章</a></li>
+<li><a href="http://mp.weixin.qq.com/s/BJT0qAN_i0lXsJFnTrCJSg" target="_blank" rel="external">图解 Android 事件分发机制</a></li>
 </ul>
 
       
@@ -445,7 +525,7 @@
           
             <a href="/tags/Android/" rel="tag"># Android</a>
           
-            <a href="/tags/longPress/" rel="tag"># longPress</a>
+            <a href="/tags/事件分发/" rel="tag"># 事件分发</a>
           
         </div>
       
@@ -458,8 +538,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/22/Android内存泄露/" rel="next" title="Android内存泄露">
-                <i class="fa fa-chevron-left"></i> Android内存泄露
+              <a href="/2017/03/23/Android性能优化之巧用软引用与弱引用优化内存使用/" rel="next" title="Android性能优化之巧用软引用与弱引用优化内存使用">
+                <i class="fa fa-chevron-left"></i> Android性能优化之巧用软引用与弱引用优化内存使用
               </a>
             
           </div>
@@ -468,8 +548,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/23/Android性能优化之UncaughtExceptionHandler定制自己的错误日志系统/" rel="prev" title="Android性能优化之UncaughtExceptionHandler定制自己的错误日志系统">
-                Android性能优化之UncaughtExceptionHandler定制自己的错误日志系统 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/23/Markdown插入图片的便捷方式/" rel="prev" title="Markdown插入图片的便捷方式">
+                Markdown插入图片的便捷方式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -485,10 +565,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/03/22/在onTouchEvent中处理任意时间的长按事件/"
-     data-title="在onTouchEvent中处理任意时间的长按事件"
+        <div class="ds-share flat" data-thread-key="2017/03/23/View事件分发/"
+     data-title="View事件分发"
      data-content=""
-     data-url="http://yoursite.com/2017/03/22/在onTouchEvent中处理任意时间的长按事件/">
+     data-url="http://yoursite.com/2017/03/23/View事件分发/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -515,8 +595,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/22/在onTouchEvent中处理任意时间的长按事件/"
-           data-title="在onTouchEvent中处理任意时间的长按事件" data-url="http://yoursite.com/2017/03/22/在onTouchEvent中处理任意时间的长按事件/">
+      <div class="ds-thread" data-thread-key="2017/03/23/View事件分发/"
+           data-title="View事件分发" data-url="http://yoursite.com/2017/03/23/View事件分发/">
       </div>
     
   </div>
@@ -638,7 +718,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-方法一-（不是最优）"><span class="nav-text">A. 方法一 （不是最优）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-欲实现的效果"><span class="nav-text">1. 欲实现的效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用的方法"><span class="nav-text">2. 使用的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-实现思路"><span class="nav-text">3. 实现思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-方法二（最优）"><span class="nav-text">B. 方法二（最优）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-方法一缺点"><span class="nav-text">1. 方法一缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-实现思路"><span class="nav-text">2. 实现思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-实现代码"><span class="nav-text">3. 实现代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-基础知识"><span class="nav-text">1. 基础知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-图解Android-事件分发机制"><span class="nav-text">2. 图解Android 事件分发机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Android-事件分发流"><span class="nav-text">1. Android 事件分发流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-详细分析"><span class="nav-text">2. 详细分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-如果事件不被中断，整个事件流向是一个类U型图"><span class="nav-text">1. 如果事件不被中断，整个事件流向是一个类U型图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-dispatchTouchEvent-和-onTouchEvent-一旦return-true-事件就停止传递了（到达终点）（没有谁能再收到这个事件）"><span class="nav-text">2. dispatchTouchEvent 和 onTouchEvent 一旦return true,事件就停止传递了（到达终点）（没有谁能再收到这个事件）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-dispatchTouchEvent-和-onTouchEvent-return-false-的时候事件都回传给父控件的onTouchEvent处理。"><span class="nav-text">3. dispatchTouchEvent 和 onTouchEvent return false 的时候事件都回传给父控件的onTouchEvent处理。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-onInterceptTouchEvent-的作用"><span class="nav-text">4. onInterceptTouchEvent 的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-ViewGroup-和View-的dispatchTouchEvent方法返回super-dispatchTouchEvent-的时候事件流走向。"><span class="nav-text">5. ViewGroup 和View 的dispatchTouchEvent方法返回super.dispatchTouchEvent()的时候事件流走向。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-ACTION-DOWN-事件传递总结"><span class="nav-text">3. ACTION_DOWN 事件传递总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-关于-ACTION-MOVE-和-ACTION-UP"><span class="nav-text">4. 关于 ACTION_MOVE 和 ACTION_UP</span></a></li></ol></div>
             
 
           </div>

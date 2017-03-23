@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo," />
+  <meta name="keywords" content="Android,Reference," />
 
 
 
@@ -87,19 +87,22 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="1. StrongReference（强引用）强引用是我们最最常见的一种，一般我们在代码中直接通过new出来的对象等，都是强引用，强引用只要存在没有被销毁，内存就不会被系统回收。我们以生成Bitmap为例如下:
+1Bitmap imageBitmap = readBitmapFromResource(getResources(), R.mipmap.bg_post_activity_5);
+生成">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/03/20/hello-world/index.html">
+<meta property="og:title" content="Android性能优化之巧用软引用与弱引用优化内存使用">
+<meta property="og:url" content="http://yoursite.com/2017/03/23/Android性能优化之巧用软引用与弱引用优化内存使用/index.html">
 <meta property="og:site_name" content="csmijo's notes">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2017-03-22T01:55:42.669Z">
+<meta property="og:description" content="1. StrongReference（强引用）强引用是我们最最常见的一种，一般我们在代码中直接通过new出来的对象等，都是强引用，强引用只要存在没有被销毁，内存就不会被系统回收。我们以生成Bitmap为例如下:
+1Bitmap imageBitmap = readBitmapFromResource(getResources(), R.mipmap.bg_post_activity_5);
+生成">
+<meta property="og:updated_time" content="2017-03-23T01:55:29.319Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="Android性能优化之巧用软引用与弱引用优化内存使用">
+<meta name="twitter:description" content="1. StrongReference（强引用）强引用是我们最最常见的一种，一般我们在代码中直接通过new出来的对象等，都是强引用，强引用只要存在没有被销毁，内存就不会被系统回收。我们以生成Bitmap为例如下:
+1Bitmap imageBitmap = readBitmapFromResource(getResources(), R.mipmap.bg_post_activity_5);
+生成">
 
 
 
@@ -131,7 +134,7 @@ Quick">
 
 
 
-  <title> Hello World | csmijo's notes </title>
+  <title> Android性能优化之巧用软引用与弱引用优化内存使用 | csmijo's notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -279,7 +282,7 @@ Quick">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/20/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/23/Android性能优化之巧用软引用与弱引用优化内存使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="csmijo">
@@ -300,7 +303,7 @@ Quick">
             
             
               
-                Hello World
+                Android性能优化之巧用软引用与弱引用优化内存使用
               
             
           </h1>
@@ -315,8 +318,8 @@ Quick">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T20:22:31+08:00">
-                2017-03-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-23T09:53:21+08:00">
+                2017-03-23
               </time>
             
 
@@ -338,8 +341,19 @@ Quick">
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/小工具/" itemprop="url" rel="index">
-                    <span itemprop="name">小工具</span>
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/Android性能优化/" itemprop="url" rel="index">
+                    <span itemprop="name">Android性能优化</span>
                   </a>
                 </span>
 
@@ -356,8 +370,8 @@ Quick">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/20/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/20/hello-world/" itemprop="commentCount"></span>
+                <a href="/2017/03/23/Android性能优化之巧用软引用与弱引用优化内存使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/23/Android性能优化之巧用软引用与弱引用优化内存使用/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -365,7 +379,7 @@ Quick">
 
           
           
-             <span id="/2017/03/20/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
+             <span id="/2017/03/23/Android性能优化之巧用软引用与弱引用优化内存使用/" class="leancloud_visitors" data-flag-title="Android性能优化之巧用软引用与弱引用优化内存使用">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -394,15 +408,23 @@ Quick">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a><br><a id="more"></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h2 id="1-StrongReference（强引用）"><a href="#1-StrongReference（强引用）" class="headerlink" title="1. StrongReference（强引用）"></a>1. StrongReference（强引用）</h2><p>强引用是我们最最常见的一种，一般我们在代码中直接通过new出来的对象等，都是强引用，<strong>强引用只要存在没有被销毁，内存就不会被系统回收</strong>。我们以生成Bitmap为例如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Bitmap imageBitmap = readBitmapFromResource(getResources(), R.mipmap.bg_post_activity_5);</div></pre></td></tr></table></figure>
+<p>生成 Bitmap 代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public Bitmap readBitmapFromResource(Resources resources, int resourcesId) &#123;</div><div class="line">        BitmapFactory.Options options = new BitmapFactory.Options();</div><div class="line">        return BitmapFactory.decodeResource(resources, resourcesId, options);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="2-SoftReference（软引用）"><a href="#2-SoftReference（软引用）" class="headerlink" title="2. SoftReference（软引用）"></a>2. SoftReference（软引用）</h2><p>软引用是用来描述一些<strong>有用但并不是必需的对象</strong>，在<strong>内存严重不足的情况下会被系统回收</strong>，如果该对象可能会经常使用的，就尽量用软引用。因此，这一点可以很好地用来解决OOM的问题，并且<strong>这个特性很适合用来实现缓</strong>存：比如网页缓存、图片缓存等。这里还是以缓存Bitmap为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SoftReference&lt;Bitmap&gt; softReference = new SoftReference&lt;Bitmap&gt;(readBitmapFromResource(getResources(), R.mipmap.bg_post_activity_5));</div><div class="line">Bitmap bitmap = softReference.get();</div></pre></td></tr></table></figure>
+<h2 id="3-WeakReference（弱引用）"><a href="#3-WeakReference（弱引用）" class="headerlink" title="3. WeakReference（弱引用）"></a>3. WeakReference（弱引用）</h2><p>弱引用也是用来描述<strong>非必需对象的</strong>，当JVM进行垃圾回收时，<strong>无论内存是否充足，都会回收被弱引用关联的对象</strong>，WeakReference 的强度又明显低于 SoftReference，所以如果该对象不被使用的可能性更大些，就可以用弱引用。还是以缓存Bitmap为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">WeakReference&lt;Bitmap&gt; weakReference = new WeakReference&lt;Bitmap&gt;(readBitmapFromResource(getResources(), R.mipmap.bg_post_activity_5));</div><div class="line">Bitmap bitmap1 = weakReference.get();</div></pre></td></tr></table></figure>
+<h2 id="4-PhantomReference（虚引用）"><a href="#4-PhantomReference（虚引用）" class="headerlink" title="4. PhantomReference（虚引用）"></a>4. PhantomReference（虚引用）</h2><p>虚引用和前面的软引用、弱引用不同，<strong>它并不影响对象的生命周期</strong>。如果一个对象与虚引用关联，则跟没有引用与之关联一样，在任何时候都可能被垃圾回收器回收。还是以缓存Bitmap为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ReferenceQueue&lt;Bitmap&gt; queue = new ReferenceQueue&lt;Bitmap&gt;();</div><div class="line">PhantomReference&lt;Bitmap&gt;  phantomReference = new PhantomReference&lt;Bitmap&gt;(readBitmapFromResource(getResources(), R.mipmap.bg_post_activity_5),queue);</div><div class="line">Bitmap bitmap2 = phantomReference.get();</div></pre></td></tr></table></figure>
+<p>从上面的分析可以看出内存被系统回收的概率从<strong>小到大</strong>是：<strong>虚引用–弱引用–软引用–强引用</strong></p>
+<h2 id="5-实际测试"><a href="#5-实际测试" class="headerlink" title="5. 实际测试"></a>5. 实际测试</h2><p>在模拟内存使用越来越紧张的情况下，并没有出现先回收弱引用，再回收软引用，而是两个一并回收掉了，其实按照Java正常引用顺序是软引用强于弱引用，但是从 <code>Android 2.3 (API Level 9)</code>开始，<strong>垃圾回收器会更倾向于回收持有软引用或弱引用的对象，这让软引用像弱引用一样变得不再可靠</strong>。所以图片缓存不再使用软引用而采用LRU算法。但是强引用一直毅力不倒。</p>
+<hr>
+<p>[参考文献]</p>
+<ul>
+<li><a href="http://www.cnblogs.com/whoislcj/p/5895202.html" target="_blank" rel="external">Android性能优化之巧用软引用与弱引用优化内存使用</a></li>
+</ul>
 
       
     </div>
@@ -426,7 +448,9 @@ Quick">
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Reference/" rel="tag"># Reference</a>
           
         </div>
       
@@ -439,14 +463,18 @@ Quick">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/03/23/Android性能优化之UncaughtExceptionHandler定制自己的错误日志系统/" rel="next" title="Android性能优化之UncaughtExceptionHandler定制自己的错误日志系统">
+                <i class="fa fa-chevron-left"></i> Android性能优化之UncaughtExceptionHandler定制自己的错误日志系统
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/21/发布Android-Library项目到JCenter/" rel="prev" title="发布Android Library项目到JCenter">
-                发布Android Library项目到JCenter <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/23/View事件分发/" rel="prev" title="View事件分发">
+                View事件分发 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -462,10 +490,10 @@ Quick">
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/03/20/hello-world/"
-     data-title="Hello World"
+        <div class="ds-share flat" data-thread-key="2017/03/23/Android性能优化之巧用软引用与弱引用优化内存使用/"
+     data-title="Android性能优化之巧用软引用与弱引用优化内存使用"
      data-content=""
-     data-url="http://yoursite.com/2017/03/20/hello-world/">
+     data-url="http://yoursite.com/2017/03/23/Android性能优化之巧用软引用与弱引用优化内存使用/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -492,8 +520,8 @@ Quick">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/20/hello-world/"
-           data-title="Hello World" data-url="http://yoursite.com/2017/03/20/hello-world/">
+      <div class="ds-thread" data-thread-key="2017/03/23/Android性能优化之巧用软引用与弱引用优化内存使用/"
+           data-title="Android性能优化之巧用软引用与弱引用优化内存使用" data-url="http://yoursite.com/2017/03/23/Android性能优化之巧用软引用与弱引用优化内存使用/">
       </div>
     
   </div>
@@ -615,7 +643,7 @@ Quick">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-StrongReference（强引用）"><span class="nav-text">1. StrongReference（强引用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-SoftReference（软引用）"><span class="nav-text">2. SoftReference（软引用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-WeakReference（弱引用）"><span class="nav-text">3. WeakReference（弱引用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-PhantomReference（虚引用）"><span class="nav-text">4. PhantomReference（虚引用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-实际测试"><span class="nav-text">5. 实际测试</span></a></li></ol></div>
             
 
           </div>
