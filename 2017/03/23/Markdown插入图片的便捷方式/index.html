@@ -103,7 +103,7 @@
 使用Python在Markdown插入图片并自动获取链接
 
 但是在直接使用时并不是那么一帆风顺，遇到了各种不成功的情況，然后我就自己调试，摸索了一下，终于成">
-<meta property="og:updated_time" content="2017-03-23T11:21:37.088Z">
+<meta property="og:updated_time" content="2017-03-23T11:45:24.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Markdown插入图片的便捷方式">
 <meta name="twitter:description" content="1. 前言最近一直在使用 Markdown 写文档，但是其中贴图真是太麻烦了，于是就想着能不能有什么好的方法来解决，Google，发现了网上已经有一些前辈写好的教程了，我主要参考了这两篇博客的内容：
@@ -440,13 +440,9 @@
 </li>
 <li><p>编写 AutoHotKey脚本文件 <code>markdown_picture.ahk</code></p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">;将图片上传至七牛云，并获得图片地址</div><div class="line">^!c::</div><div class="line">send, ^c</div><div class="line">clipwait</div><div class="line">Run %comspec%  /k &quot;python *替换成upload_qiniu.py文件的地址* %Clipboard%&quot;</div></pre></td></tr></table></figure>
-<p> 为了防止疑惑，这里给出一个 Windows 环境下示例：</p>
-<pre><code>;将图片上传至七牛云，并获得图片地址
-^!c::
-send, ^c
-clipwait
-Run %comspec%  /c &quot;python D:\program\qiniu-python-sdk\upload_qiniu.py %Clipboard%&quot;
-</code></pre><p> 这里也稍微修改了参考文献中的内容，因为在我本地运行时原来的脚本执行不成功。</p>
+<p> 为了防止疑惑，这里给出一个 Windows 环境下示例：   </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">;将图片上传至七牛云，并获得图片地址</div><div class="line">^!c::</div><div class="line">send, ^c</div><div class="line">clipwait</div><div class="line">Run %comspec%  /c &quot;python D:\program\qiniu-python-sdk\upload_qiniu.py %Clipboard%&quot;</div></pre></td></tr></table></figure>
+<p> 这里也稍微修改了参考文献中的内容，因为在我本地运行时原来的脚本执行不成功。</p>
 <p> 其中，<strong>第五行的“/k”</strong> 表示命令执行完成之后，cmd窗口不消失，这样可以方便调试，如果出错了可以看到错误信息；如果希望窗口自动关闭，可以将这个参数设置为<strong>“/c”</strong>。</p>
 </li>
 <li><p>启动<code>markdown_picture.ahk</code> 后，我们就可以使用 <code>ctrl + alt + c</code> –&gt; <code>ctrl + v</code> 来插入图片了。</p>
