@@ -113,7 +113,7 @@ monkey文档官方网址：https://developer.android.com/studio/test/monkey.html
 <meta property="og:image" content="http://on9czqsf5.bkt.clouddn.com/monkey事件类命令.PNG?2017-04-10-17-04-14">
 <meta property="og:image" content="http://on9czqsf5.bkt.clouddn.com/monkey约束类命令.PNG?2017-04-10-17-15-55">
 <meta property="og:image" content="http://on9czqsf5.bkt.clouddn.com/monkey调试类命令.PNG?2017-04-10-17-38-31">
-<meta property="og:updated_time" content="2017-04-11T01:37:40.895Z">
+<meta property="og:updated_time" content="2017-04-12T10:40:25.172Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android monkey使用详解">
 <meta name="twitter:description" content="1. monkey 的基本使用
@@ -530,6 +530,7 @@ monkey文档官方网址：https://developer.android.com/studio/test/monkey.html
 <li><p><strong>点击事件</strong></p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DispatchPointer(long downTime, long eventTime, int action, float x, float y, float pressure, float size, int metaState, float xPrecision, float yPrecision, int device, int edgeFlags)</div></pre></td></tr></table></figure>
 <p> <strong>只需要关注： action、x、y 即可</strong></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Tap(x,y,tapDuration)</div></pre></td></tr></table></figure>
 </li>
 <li><p><strong>启动应用</strong></p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LaunchActivity(String pkg_name,String cl_name)</div></pre></td></tr></table></figure>
@@ -551,7 +552,7 @@ monkey文档官方网址：https://developer.android.com/studio/test/monkey.html
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DispatchFlip(boolean keyboardOpen)</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="3-2-monkey-脚本编写"><a href="#3-2-monkey-脚本编写" class="headerlink" title="3.2 monkey 脚本编写"></a>3.2 monkey 脚本编写</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">type= raw events</div><div class="line">count= 10</div><div class="line">speed= 1.0</div><div class="line">start data &gt;&gt;</div><div class="line">captureDispatchPointer(5109520,5109520,0,230.75429,458.1814,0.20784314,0.06666667,0,0.0,0.0,65539,0)</div><div class="line">captureDispatchKey(5113146,5113146,0,20,0,0,0,0)</div><div class="line">captureDispatchFlip(true)</div><div class="line">...</div></pre></td></tr></table></figure>
+<h3 id="3-2-monkey-脚本编写"><a href="#3-2-monkey-脚本编写" class="headerlink" title="3.2 monkey 脚本编写"></a>3.2 monkey 脚本编写</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"># 启动测试</div><div class="line">type = user</div><div class="line">count = 10</div><div class="line">speed = 1.0</div><div class="line">start data &gt;&gt;</div><div class="line"># 启动360浏览器</div><div class="line">LaunchActivity(com.qihoo.browser,com.qihoo.browser.activity.SplashActivity) </div><div class="line">UserWait(5000)</div><div class="line"></div><div class="line"># 点击搜索框</div><div class="line">Tap(223,250,1000)</div><div class="line">UserWait(1000)</div><div class="line"># 输入字母 test</div><div class="line">DispatchString(test)</div><div class="line">UserWait(2000)</div><div class="line"># 点击搜索</div><div class="line">Tap(672,100,1000)</div><div class="line">UserWait(2000)</div></pre></td></tr></table></figure>
 <h2 id="4-monkey-日志分析"><a href="#4-monkey-日志分析" class="headerlink" title="4. monkey 日志分析"></a>4. monkey 日志分析</h2><h3 id="4-1-monkey-日志的保存方法"><a href="#4-1-monkey-日志的保存方法" class="headerlink" title="4.1 monkey 日志的保存方法"></a>4.1 monkey 日志的保存方法</h3><ol>
 <li><p>保存在 pc 中，命令如下：</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ adb shell monkey [options] &lt;event-count&gt; &gt; d:\monkeylog.txt</div></pre></td></tr></table></figure>
