@@ -277,6 +277,177 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/Android内存泄露/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="csmijo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/readDog.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="csmijo's notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/22/Android内存泄露/" itemprop="url">
+                  Android内存泄露
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-22T09:39:52+08:00">
+                2017-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/Android性能优化/" itemprop="url" rel="index">
+                    <span itemprop="name">Android性能优化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/22/Android内存泄露/" class="leancloud_visitors" data-flag-title="Android内存泄露">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>　　最近在开发学习项目中使用<a href="https://github.com/square/leakcanary">LeakCanary</a>进行内存泄露的检测，发现了一些之前没有注意到的地方。为了寻找解决方法，在网上查了不少资料，现总结一下。常见的内存泄露包括一下几种情况。</p>
+<h2 id="1-监听器"><a href="#1-监听器" class="headerlink" title="1. 监听器"></a>1. 监听器</h2><p>　　当使用系统服务如SensorManager，LocationManager的时候，一般通过<code>cotext.getSystemService</code>获取，它们负责执行某些后台任务，或者为硬件访问提供接口。如果context 对象想要在服务内部的事件发生时被通知，那就需要<strong>把自己注册到服务的监听器中</strong>。然而，这会让服务持有activity的引用，如果在<strong>activity销毁的时候忘记了取消注册</strong>，那就会导致activity 内存泄露了。</p>
+<p><strong>【解决方法】：</strong></p>
+<p>　　在activity的 onDestroy() 方法中取消注册。</p>
+<p><strong>【示例】：</strong></p>
+<p><strong>修改前：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_main);</div><div class="line">    SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);</div><div class="line">    Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ALL);</div><div class="line">    sensorManager.registerListener(<span class="keyword">this</span>, sensor, SensorManager.SENSOR_DELAY_FASTEST);    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/22/Android内存泄露/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/Android-获取当前Activity的屏幕截图/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1332,7 +1503,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1350,7 +1521,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
