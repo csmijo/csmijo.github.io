@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android,Reference," />
+  <meta name="keywords" content="Jmeter,Bean shell," />
 
 
 
@@ -87,22 +87,29 @@
 
 
 
-<meta name="description" content="1. StrongReference（强引用）强引用是我们最最常见的一种，一般我们在代码中直接通过new出来的对象等，都是强引用，强引用只要存在没有被销毁，内存就不会被系统回收。我们以生成Bitmap为例如下:
-1Bitmap imageBitmap = readBitmapFromResource(getResources(), R.mipmap.bg_post_activity_5);
-生成">
+<meta name="description" content="最近在学习使用 Jmeter 来进行接口测试，使用 Jmeter 提供的基础方法无法完成测试需求，所以需要编写一些 Bean shell 脚本。下面将对 Bean shell的一些使用方法进行简单的介绍。
+1. 什么是 Bean shellBean shell官网：http://www.BeanShell.org/
+
+BeanShell 是一种完全符合Java语法规范的脚本语言,并且又拥有自己的一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android性能优化之巧用软引用与弱引用优化内存使用">
-<meta property="og:url" content="http://yoursite.com/2017/03/23/Android性能优化之巧用软引用与弱引用优化内存使用/index.html">
+<meta property="og:title" content="Jmeter之Bean shell的使用.md">
+<meta property="og:url" content="http://yoursite.com/2017/06/20/Jmeter之Bean-shell的使用/index.html">
 <meta property="og:site_name" content="csmijo's notes">
-<meta property="og:description" content="1. StrongReference（强引用）强引用是我们最最常见的一种，一般我们在代码中直接通过new出来的对象等，都是强引用，强引用只要存在没有被销毁，内存就不会被系统回收。我们以生成Bitmap为例如下:
-1Bitmap imageBitmap = readBitmapFromResource(getResources(), R.mipmap.bg_post_activity_5);
-生成">
-<meta property="og:updated_time" content="2017-03-23T01:55:29.319Z">
+<meta property="og:description" content="最近在学习使用 Jmeter 来进行接口测试，使用 Jmeter 提供的基础方法无法完成测试需求，所以需要编写一些 Bean shell 脚本。下面将对 Bean shell的一些使用方法进行简单的介绍。
+1. 什么是 Bean shellBean shell官网：http://www.BeanShell.org/
+
+BeanShell 是一种完全符合Java语法规范的脚本语言,并且又拥有自己的一">
+<meta property="og:image" content="http://on9czqsf5.bkt.clouddn.com/2017-06-20_193742.PNG?2017-06-20-19-38-03">
+<meta property="og:image" content="http://on9czqsf5.bkt.clouddn.com/2017-06-19_202520.PNG?2017-06-19-20-29-17">
+<meta property="og:image" content="http://on9czqsf5.bkt.clouddn.com/2017-06-19_202722.PNG?2017-06-19-20-29-30">
+<meta property="og:updated_time" content="2017-06-20T11:38:20.080Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android性能优化之巧用软引用与弱引用优化内存使用">
-<meta name="twitter:description" content="1. StrongReference（强引用）强引用是我们最最常见的一种，一般我们在代码中直接通过new出来的对象等，都是强引用，强引用只要存在没有被销毁，内存就不会被系统回收。我们以生成Bitmap为例如下:
-1Bitmap imageBitmap = readBitmapFromResource(getResources(), R.mipmap.bg_post_activity_5);
-生成">
+<meta name="twitter:title" content="Jmeter之Bean shell的使用.md">
+<meta name="twitter:description" content="最近在学习使用 Jmeter 来进行接口测试，使用 Jmeter 提供的基础方法无法完成测试需求，所以需要编写一些 Bean shell 脚本。下面将对 Bean shell的一些使用方法进行简单的介绍。
+1. 什么是 Bean shellBean shell官网：http://www.BeanShell.org/
+
+BeanShell 是一种完全符合Java语法规范的脚本语言,并且又拥有自己的一">
+<meta name="twitter:image" content="http://on9czqsf5.bkt.clouddn.com/2017-06-20_193742.PNG?2017-06-20-19-38-03">
 
 
 
@@ -134,7 +141,7 @@
 
 
 
-  <title> Android性能优化之巧用软引用与弱引用优化内存使用 | csmijo's notes </title>
+  <title> Jmeter之Bean shell的使用.md | csmijo's notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -282,7 +289,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/23/Android性能优化之巧用软引用与弱引用优化内存使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/20/Jmeter之Bean-shell的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="csmijo">
@@ -303,7 +310,7 @@
             
             
               
-                Android性能优化之巧用软引用与弱引用优化内存使用
+                Jmeter之Bean shell的使用.md
               
             
           </h1>
@@ -318,8 +325,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-23T09:53:21+08:00">
-                2017-03-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-20T19:31:47+08:00">
+                2017-06-20
               </time>
             
 
@@ -341,8 +348,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/测试/" itemprop="url" rel="index">
+                    <span itemprop="name">测试</span>
                   </a>
                 </span>
 
@@ -352,8 +359,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/Android性能优化/" itemprop="url" rel="index">
-                    <span itemprop="name">Android性能优化</span>
+                  <a href="/categories/测试/性能测试/" itemprop="url" rel="index">
+                    <span itemprop="name">性能测试</span>
                   </a>
                 </span>
 
@@ -369,7 +376,7 @@
 
           
           
-             <span id="/2017/03/23/Android性能优化之巧用软引用与弱引用优化内存使用/" class="leancloud_visitors" data-flag-title="Android性能优化之巧用软引用与弱引用优化内存使用">
+             <span id="/2017/06/20/Jmeter之Bean-shell的使用/" class="leancloud_visitors" data-flag-title="Jmeter之Bean shell的使用.md">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -398,22 +405,73 @@
       
 
       
-        <h2 id="1-StrongReference（强引用）"><a href="#1-StrongReference（强引用）" class="headerlink" title="1. StrongReference（强引用）"></a>1. StrongReference（强引用）</h2><p>强引用是我们最最常见的一种，一般我们在代码中直接通过new出来的对象等，都是强引用，<strong>强引用只要存在没有被销毁，内存就不会被系统回收</strong>。我们以生成Bitmap为例如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Bitmap imageBitmap = readBitmapFromResource(getResources(), R.mipmap.bg_post_activity_5);</div></pre></td></tr></table></figure>
-<p>生成 Bitmap 代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public Bitmap readBitmapFromResource(Resources resources, int resourcesId) &#123;</div><div class="line">        BitmapFactory.Options options = new BitmapFactory.Options();</div><div class="line">        return BitmapFactory.decodeResource(resources, resourcesId, options);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+        <p>最近在学习使用 Jmeter 来进行接口测试，使用 Jmeter 提供的基础方法无法完成测试需求，所以需要编写一些 Bean shell 脚本。下面将对 Bean shell的一些使用方法进行简单的介绍。</p>
+<h2 id="1-什么是-Bean-shell"><a href="#1-什么是-Bean-shell" class="headerlink" title="1. 什么是 Bean shell"></a>1. 什么是 Bean shell</h2><p><code>Bean shell</code>官网：<a href="http://www.BeanShell.org/" target="_blank" rel="external">http://www.BeanShell.org/</a></p>
+<ul>
+<li><code>BeanShell</code> 是一种完全符合Java语法规范的脚本语言,并且又拥有自己的一些语法和方法;</li>
+<li><code>BeanShell</code> 是一种松散类型的脚本语言(这点和JS类似);</li>
+<li><code>BeanShell</code> <strong>是用Java写成的</strong>,一个小型的、免费的、可以下载的、嵌入式的<code>Java</code>源代码解释器,具有对象脚本语言特性，非常精简的解释器<code>jar</code>文件大小为175k。</li>
+<li><code>BeanShell</code> <strong>执行标准Java语句和表达式</strong>,另外包括一些脚本命令和语法。</li>
+</ul>
 <a id="more"></a>
-<h2 id="2-SoftReference（软引用）"><a href="#2-SoftReference（软引用）" class="headerlink" title="2. SoftReference（软引用）"></a>2. SoftReference（软引用）</h2><p>软引用是用来描述一些<strong>有用但并不是必需的对象</strong>，在<strong>内存严重不足的情况下会被系统回收</strong>，如果该对象可能会经常使用的，就尽量用软引用。因此，这一点可以很好地用来解决OOM的问题，并且<strong>这个特性很适合用来实现缓</strong>存：比如网页缓存、图片缓存等。这里还是以缓存Bitmap为例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SoftReference&lt;Bitmap&gt; softReference = new SoftReference&lt;Bitmap&gt;(readBitmapFromResource(getResources(), R.mipmap.bg_post_activity_5));</div><div class="line">Bitmap bitmap = softReference.get();</div></pre></td></tr></table></figure>
-<h2 id="3-WeakReference（弱引用）"><a href="#3-WeakReference（弱引用）" class="headerlink" title="3. WeakReference（弱引用）"></a>3. WeakReference（弱引用）</h2><p>弱引用也是用来描述<strong>非必需对象的</strong>，当JVM进行垃圾回收时，<strong>无论内存是否充足，都会回收被弱引用关联的对象</strong>，WeakReference 的强度又明显低于 SoftReference，所以如果该对象不被使用的可能性更大些，就可以用弱引用。还是以缓存Bitmap为例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">WeakReference&lt;Bitmap&gt; weakReference = new WeakReference&lt;Bitmap&gt;(readBitmapFromResource(getResources(), R.mipmap.bg_post_activity_5));</div><div class="line">Bitmap bitmap1 = weakReference.get();</div></pre></td></tr></table></figure>
-<h2 id="4-PhantomReference（虚引用）"><a href="#4-PhantomReference（虚引用）" class="headerlink" title="4. PhantomReference（虚引用）"></a>4. PhantomReference（虚引用）</h2><p>虚引用和前面的软引用、弱引用不同，<strong>它并不影响对象的生命周期</strong>。如果一个对象与虚引用关联，则跟没有引用与之关联一样，在任何时候都可能被垃圾回收器回收。还是以缓存Bitmap为例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ReferenceQueue&lt;Bitmap&gt; queue = new ReferenceQueue&lt;Bitmap&gt;();</div><div class="line">PhantomReference&lt;Bitmap&gt;  phantomReference = new PhantomReference&lt;Bitmap&gt;(readBitmapFromResource(getResources(), R.mipmap.bg_post_activity_5),queue);</div><div class="line">Bitmap bitmap2 = phantomReference.get();</div></pre></td></tr></table></figure>
-<p>从上面的分析可以看出内存被系统回收的概率从<strong>小到大</strong>是：<strong>虚引用–弱引用–软引用–强引用</strong></p>
-<h2 id="5-实际测试"><a href="#5-实际测试" class="headerlink" title="5. 实际测试"></a>5. 实际测试</h2><p>在模拟内存使用越来越紧张的情况下，并没有出现先回收弱引用，再回收软引用，而是两个一并回收掉了，其实按照Java正常引用顺序是软引用强于弱引用，但是从 <code>Android 2.3 (API Level 9)</code>开始，<strong>垃圾回收器会更倾向于回收持有软引用或弱引用的对象，这让软引用像弱引用一样变得不再可靠</strong>。所以图片缓存不再使用软引用而采用LRU算法。但是强引用一直毅力不倒。</p>
+<h2 id="2-Jmeter-有哪些-Bean-shell"><a href="#2-Jmeter-有哪些-Bean-shell" class="headerlink" title="2. Jmeter 有哪些 Bean shell"></a>2. Jmeter 有哪些 Bean shell</h2><ul>
+<li>定时器：<code>BeanShell Timer</code></li>
+<li>前置处理器：<code>BeanShell PreProcessor</code></li>
+<li>采样器：<code>BeanShell Sampler</code></li>
+<li>后置处理器：<code>BeanShell PostProcessor</code></li>
+<li>断言：<code>BeanShell断言</code></li>
+<li>监听器：<code>BeanShell Listener</code></li>
+</ul>
+<h2 id="3-Bean-shell常用內置变量"><a href="#3-Bean-shell常用內置变量" class="headerlink" title="3. Bean shell常用內置变量"></a>3. Bean shell常用內置变量</h2><p>JMeter在它的BeanShell中内置了变量，用户可以通过这些变量与JMeter进行交互，其中主要的变量及其使用方法如下:</p>
+<ul>
+<li><code>log</code>：写入信息到jmeber.log文件，使用方法：<code>log.info(“This is log info!”);</code></li>
+<li><code>ctx</code>：该变量引用了当前线程的上下文</li>
+<li><code>vars - (JMeterVariables)</code>：操作 <code>jmeter</code> 变量，这个变量实际引用了JMeter线程中的局部变量容器（本质上是Map），它是测试用例与BeanShell交互的桥梁，常用方法：<ul>
+<li>a) vars.get(String key)：从jmeter中获得变量值</li>
+<li>b) vars.put(String key，String value)：数据存到jmeter变量中</li>
+</ul>
+</li>
+<li><code>props - (JMeterProperties - class java.util.Properties)</code>：操作jmeter属性，该变量引用了JMeter的配置信息，可以获取Jmeter的属性，它的使用方法与vars类似，但是<strong>只能put进去String类型的值，而不能是一个对象</strong>。对应于java.util.Properties。 
+　　　　<ul>
+<li>a) props.get(“START.HMS”);　　注：START.HMS为属性名，在文件jmeter.properties中定义 </li>
+<li>b) props.put(“PROP1”,”1234”); </li>
+</ul>
+</li>
+<li><p><code>prev - (SampleResult)</code>：获取前面的sample返回的信息，常用方法：</p>
+<ul>
+<li>a) getResponseDataAsString()：获取响应信息</li>
+<li>b) getResponseCode() ：获取响应code</li>
+</ul>
+</li>
+<li><p>更多的方法可以查看官方文档：<a href="http://jmeter.apache.org/api/org/apache/jmeter/" target="_blank" rel="external">http://jmeter.apache.org/api/org/apache/jmeter/</a> </p>
+</li>
+</ul>
+<h2 id="3-Bean-shell-的用法"><a href="#3-Bean-shell-的用法" class="headerlink" title="3. Bean shell 的用法"></a>3. Bean shell 的用法</h2><h3 id="3-1-测试需求"><a href="#3-1-测试需求" class="headerlink" title="3.1 测试需求"></a>3.1 测试需求</h3><p>假设现在有这样的测试需求：</p>
+<p>对 http 接口xx 进行压力测试，需要根据时间戳随机 uid 模拟用户访问，然后解析接口返回的 Json 串从中得到 vid 值并作为下一步使用，判断该次请求返回的列表组长度及响应码是否符合要求。</p>
+<h3 id="3-2-测试流程"><a href="#3-2-测试流程" class="headerlink" title="3.2 测试流程"></a>3.2 测试流程</h3><ol>
+<li>创建线程组</li>
+<li>创建 http sampler</li>
+<li><p>创建 BeanShell PreProcessor 生成随机 uid<br> 可以创建 BeanShell PreProcessor，然后编写随机生成方法，这里可以自由的指定自己需要的规则。比如下图中使用”test_ + 当前时间 + 随机数” 的规则生成伪uid。</p>
+<p> 可以使用 <code>log.info()</code> 方便进行调试，可以在下方的 log 中进行查看。</p>
+<p> 可以使用 <code>vars.put()</code> 方法将变量存放到 jmeter 的变量中，然后就可以在 http 请求中通过 <code>${uid}</code> 的方式进行使用了。</p>
+<p> <img src="http://on9czqsf5.bkt.clouddn.com/2017-06-20_193742.PNG?2017-06-20-19-38-03" alt="2017-06-20_193742.PNG"></p>
+</li>
+</ol>
+<ol>
+<li><p>创建 BeanShell PostProcessor<br> 解析返回的 json串，这里使用第三方的 fastjson.jar 来进行解析，只需要将 <code>fastjson.jar</code> 放到 jmter 安装目录的 <code>lib\ext</code> 文件夹下即可使用。</p>
+<p> <img src="http://on9czqsf5.bkt.clouddn.com/2017-06-19_202520.PNG?2017-06-19-20-29-17" alt="2017-06-19_202520.PNG"></p>
+</li>
+<li><p>创建 Beanshell断言</p>
+<p>  <img src="http://on9czqsf5.bkt.clouddn.com/2017-06-19_202722.PNG?2017-06-19-20-29-30" alt="2017-06-19_202722.PNG"></p>
+</li>
+</ol>
 <hr>
 <p>[参考文献]</p>
 <ul>
-<li><a href="http://www.cnblogs.com/whoislcj/p/5895202.html" target="_blank" rel="external">Android性能优化之巧用软引用与弱引用优化内存使用</a></li>
+<li><a href="http://www.cnblogs.com/puresoul/p/4915350.html" target="_blank" rel="external">Jmeter之Bean shell使用(一)</a></li>
+<li><a href="http://www.cnblogs.com/puresoul/p/4949889.html" target="_blank" rel="external">Jmeter之Bean shell使用(二)</a></li>
+<li><a href="http://www.jianshu.com/p/bc537d6acb3a" target="_blank" rel="external">[测试]Jmeter-BeanShell的使用介绍</a></li>
+<li><a href="http://blog.csdn.net/silencemylove/article/details/51373873" target="_blank" rel="external"> Jmeter BeanShell PostProcessor提取json数据</a></li>
 </ul>
 
       
@@ -438,9 +496,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"># Android</a>
+            <a href="/tags/Jmeter/" rel="tag"># Jmeter</a>
           
-            <a href="/tags/Reference/" rel="tag"># Reference</a>
+            <a href="/tags/Bean-shell/" rel="tag"># Bean shell</a>
           
         </div>
       
@@ -453,8 +511,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/23/Android性能优化之UncaughtExceptionHandler定制自己的错误日志系统/" rel="next" title="Android性能优化之UncaughtExceptionHandler定制自己的错误日志系统">
-                <i class="fa fa-chevron-left"></i> Android性能优化之UncaughtExceptionHandler定制自己的错误日志系统
+              <a href="/2017/05/09/TraceView学习笔记/" rel="next" title="TraceView学习笔记">
+                <i class="fa fa-chevron-left"></i> TraceView学习笔记
               </a>
             
           </div>
@@ -462,10 +520,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/23/View事件分发/" rel="prev" title="View事件分发">
-                View事件分发 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -612,7 +666,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-StrongReference（强引用）"><span class="nav-text">1. StrongReference（强引用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-SoftReference（软引用）"><span class="nav-text">2. SoftReference（软引用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-WeakReference（弱引用）"><span class="nav-text">3. WeakReference（弱引用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-PhantomReference（虚引用）"><span class="nav-text">4. PhantomReference（虚引用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-实际测试"><span class="nav-text">5. 实际测试</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是-Bean-shell"><span class="nav-text">1. 什么是 Bean shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Jmeter-有哪些-Bean-shell"><span class="nav-text">2. Jmeter 有哪些 Bean shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Bean-shell常用內置变量"><span class="nav-text">3. Bean shell常用內置变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Bean-shell-的用法"><span class="nav-text">3. Bean shell 的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-测试需求"><span class="nav-text">3.1 测试需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-测试流程"><span class="nav-text">3.2 测试流程</span></a></li></ol></li></ol></div>
             
 
           </div>

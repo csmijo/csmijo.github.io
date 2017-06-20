@@ -95,7 +95,7 @@
 <meta property="og:description" content="1. 遇到的问题12305-23 16:11:15.871: E/AndroidRuntime(21899): java.lang.NullPointerException: Attempt to invoke virtual method &amp;apos;android.content.SharedPreferences android.content.Context.getSharedPrefer">
 <meta property="og:image" content="http://on9czqsf5.bkt.clouddn.com/contentSolver_query.png?2017-03-31-10-40-25">
 <meta property="og:image" content="http://on9czqsf5.bkt.clouddn.com/ContentResolver_query_cursor.png?2017-03-31-10-38-21">
-<meta property="og:updated_time" content="2017-04-06T06:45:20.691Z">
+<meta property="og:updated_time" content="2017-05-11T03:26:07.103Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SharedPreferences多进程共享数据爬坑之旅">
 <meta name="twitter:description" content="1. 遇到的问题12305-23 16:11:15.871: E/AndroidRuntime(21899): java.lang.NullPointerException: Attempt to invoke virtual method &amp;apos;android.content.SharedPreferences android.content.Context.getSharedPrefer">
@@ -403,7 +403,13 @@
 <h2 id="2-通过-SharedPreferences-实现多进程间的数据共享-不推荐"><a href="#2-通过-SharedPreferences-实现多进程间的数据共享-不推荐" class="headerlink" title="2. 通过 SharedPreferences 实现多进程间的数据共享(不推荐)"></a>2. 通过 SharedPreferences 实现多进程间的数据共享(不推荐)</h2><p>因为之前的数据都是使用 <code>SharedPreferences</code> 进行存储，如果改用其他多进程的通信方式感觉改动的地方比较大，所以优先尝试使用修改 <code>SharedPreferences</code> 的方式进行。</p>
 <p>通过查看 API 文档发现，<strong>在 API Level &gt; 11 即 Android 3.0 可以通过 Context.MODE_MULTI_PROCESS 属性来实现多进程间的数据共享.</strong></p>
 <p><strong>但是在 API 23 时该属性被废弃</strong>。<a href="https://developer.android.com/reference/android/content/SharedPreferences.html" target="_blank" rel="external">官方文档</a>中明确写明 <strong>This class does not support use across multiple processes.</strong> 即 <code>SharedPreferences</code> 不适用于多进程间共享数据，推荐使用 <code>ContentProvider</code>。</p>
-<h2 id="3-使用-ContentProvider-的一次尝试-（失败）"><a href="#3-使用-ContentProvider-的一次尝试-（失败）" class="headerlink" title="3. 使用 ContentProvider 的一次尝试 （失败）"></a>3. 使用 ContentProvider 的一次尝试 （失败）</h2><p>平时自定义 <code>ContentProvider</code> 时，都是和 <code>Sqlite</code> 配合使用，将数据存储在数据库中，于是突发奇想，能不能把 <code>ContentProvider</code> 和 <code>SharedPreferences</code> 联合使用，使用 <code>SharedPreferences</code> 来存储数据。</p>
+<h2 id="3-更新-使用-ContentProvider-的一次尝试"><a href="#3-更新-使用-ContentProvider-的一次尝试" class="headerlink" title="3. 更新(使用 ContentProvider 的一次尝试 )"></a>3. 更新(使用 ContentProvider 的一次尝试 )</h2><pre><code>之前自己尝试了一下，没有成功，还是水平太次啊。最近在逛掘金酱的时候发现很早之前就有人实现了这样的方式，这里贴一下我找的的博客及代码，以防误人子弟啊。
+</code></pre><ul>
+<li><a href="http://blog.csdn.net/cjh94520/article/details/70880266" target="_blank" rel="external">SharedPreferences多进程解决方案</a></li>
+<li><a href="https://github.com/seven456/MultiprocessSharedPreferences" target="_blank" rel="external">MultiprocessSharedPreferences</a></li>
+</ul>
+<p>以下是我尝试失败的例子，这里记录一下。</p>
+<h2 id="3-使用-ContentProvider-的一次尝试-（失败）"><a href="#3-使用-ContentProvider-的一次尝试-（失败）" class="headerlink" title="3. 使用 ContentProvider 的一次尝试 （失败）"></a><del>3. 使用 ContentProvider 的一次尝试 （失败）</del></h2><p>平时自定义 <code>ContentProvider</code> 时，都是和 <code>Sqlite</code> 配合使用，将数据存储在数据库中，于是突发奇想，能不能把 <code>ContentProvider</code> 和 <code>SharedPreferences</code> 联合使用，使用 <code>SharedPreferences</code> 来存储数据。</p>
 <p>于是直接上手鼓捣了半天，最后在自定义 <code>ContentProvider</code> 的 <code>query()</code> 方法面前败下阵来。</p>
 <p>这是因为 <code>public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)</code> 方法需要返回一个 <code>Cursor</code> 的对象。查看代码后发现 <code>Cursor</code> 是一个接口，于是想着实现一个自定义的接口即可。</p>
 <p>结果一阵敲码完成之后，run一下，结果呵呵了，提示如下的bug：</p>
@@ -550,7 +556,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -559,7 +565,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -568,7 +574,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -623,7 +629,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-遇到的问题"><span class="nav-text">1. 遇到的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-通过-SharedPreferences-实现多进程间的数据共享-不推荐"><span class="nav-text">2. 通过 SharedPreferences 实现多进程间的数据共享(不推荐)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-使用-ContentProvider-的一次尝试-（失败）"><span class="nav-text">3. 使用 ContentProvider 的一次尝试 （失败）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-使用-ContentProvider-完成多进程间数据共享"><span class="nav-text">4. 使用 ContentProvider 完成多进程间数据共享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-多进程-Application-的多次加载"><span class="nav-text">5. 多进程 Application 的多次加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一"><span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二"><span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-总结"><span class="nav-text">6. 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-遇到的问题"><span class="nav-text">1. 遇到的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-通过-SharedPreferences-实现多进程间的数据共享-不推荐"><span class="nav-text">2. 通过 SharedPreferences 实现多进程间的数据共享(不推荐)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-更新-使用-ContentProvider-的一次尝试"><span class="nav-text">3. 更新(使用 ContentProvider 的一次尝试 )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-使用-ContentProvider-的一次尝试-（失败）"><span class="nav-text">3. 使用 ContentProvider 的一次尝试 （失败）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-使用-ContentProvider-完成多进程间数据共享"><span class="nav-text">4. 使用 ContentProvider 完成多进程间数据共享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-多进程-Application-的多次加载"><span class="nav-text">5. 多进程 Application 的多次加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一"><span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二"><span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-总结"><span class="nav-text">6. 总结</span></a></li></ol></div>
             
 
           </div>
