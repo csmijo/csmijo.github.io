@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo," />
+  <meta name="keywords" content="Jmeter,Report," />
 
 
 
@@ -87,19 +87,25 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="本文使用的 Jmeter 版本为 apache-jmeter-3.2。
+1. 命令行模式将 jtl 文件转成测试图表注意： 这种方式只适用于 jmeter3.0 以后的版本
+1.1 在测试的过程中将 jtl 转换成测试报告可以执行如下命令：1jmeter -n -t test_request.jmx -l test_result.jtl -e -o /home/csmijo/resultRepor">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/03/20/hello-world/index.html">
+<meta property="og:title" content="Jmeter测试报告生成">
+<meta property="og:url" content="http://yoursite.com/2017/06/26/Jmeter测试报告生成/index.html">
 <meta property="og:site_name" content="csmijo's notes">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2017-05-04T07:55:37.405Z">
+<meta property="og:description" content="本文使用的 Jmeter 版本为 apache-jmeter-3.2。
+1. 命令行模式将 jtl 文件转成测试图表注意： 这种方式只适用于 jmeter3.0 以后的版本
+1.1 在测试的过程中将 jtl 转换成测试报告可以执行如下命令：1jmeter -n -t test_request.jmx -l test_result.jtl -e -o /home/csmijo/resultRepor">
+<meta property="og:image" content="http://on9czqsf5.bkt.clouddn.com/2017-06-26_165038.PNG?2017-06-26-16-51-13">
+<meta property="og:image" content="http://on9czqsf5.bkt.clouddn.com/jpgc-Standard-Set.PNG?2017-06-26-18-46-44">
+<meta property="og:updated_time" content="2017-06-26T10:57:15.976Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="Jmeter测试报告生成">
+<meta name="twitter:description" content="本文使用的 Jmeter 版本为 apache-jmeter-3.2。
+1. 命令行模式将 jtl 文件转成测试图表注意： 这种方式只适用于 jmeter3.0 以后的版本
+1.1 在测试的过程中将 jtl 转换成测试报告可以执行如下命令：1jmeter -n -t test_request.jmx -l test_result.jtl -e -o /home/csmijo/resultRepor">
+<meta name="twitter:image" content="http://on9czqsf5.bkt.clouddn.com/2017-06-26_165038.PNG?2017-06-26-16-51-13">
 
 
 
@@ -131,7 +137,7 @@ Quick">
 
 
 
-  <title> Hello World | csmijo's notes </title>
+  <title> Jmeter测试报告生成 | csmijo's notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -279,7 +285,7 @@ Quick">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/20/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/26/Jmeter测试报告生成/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="csmijo">
@@ -300,7 +306,7 @@ Quick">
             
             
               
-                Hello World
+                Jmeter测试报告生成
               
             
           </h1>
@@ -315,8 +321,8 @@ Quick">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T20:22:31+08:00">
-                2017-03-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-26T18:55:18+08:00">
+                2017-06-26
               </time>
             
 
@@ -338,8 +344,19 @@ Quick">
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/小工具/" itemprop="url" rel="index">
-                    <span itemprop="name">小工具</span>
+                  <a href="/categories/测试/" itemprop="url" rel="index">
+                    <span itemprop="name">测试</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/测试/性能测试/" itemprop="url" rel="index">
+                    <span itemprop="name">性能测试</span>
                   </a>
                 </span>
 
@@ -355,7 +372,7 @@ Quick">
 
           
           
-             <span id="/2017/03/20/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
+             <span id="/2017/06/26/Jmeter测试报告生成/" class="leancloud_visitors" data-flag-title="Jmeter测试报告生成">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -384,19 +401,119 @@ Quick">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+        <p>本文使用的 <code>Jmeter</code> 版本为 <code>apache-jmeter-3.2</code>。</p>
+<h2 id="1-命令行模式将-jtl-文件转成测试图表"><a href="#1-命令行模式将-jtl-文件转成测试图表" class="headerlink" title="1. 命令行模式将 jtl 文件转成测试图表"></a>1. 命令行模式将 jtl 文件转成测试图表</h2><p><strong>注意：</strong> 这种方式只适用于 <code>jmeter3.0</code> 以后的版本</p>
+<h3 id="1-1-在测试的过程中将-jtl-转换成测试报告"><a href="#1-1-在测试的过程中将-jtl-转换成测试报告" class="headerlink" title="1.1 在测试的过程中将 jtl 转换成测试报告"></a>1.1 在测试的过程中将 jtl 转换成测试报告</h3><p>可以执行如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jmeter -n -t test_request.jmx -l test_result.jtl -e -o /home/csmijo/resultReport</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a><br><!--more--></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: </p>
+<p>参数说明：</p>
 <ul>
-<li><a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></li>
-<li><a href="https://hexo.io/zh-cn/docs/server.html" target="_blank" rel="external">https://hexo.io/zh-cn/docs/server.html</a></li>
+<li><code>-n</code> : 非GUI 模式执行JMeter</li>
+<li><code>-t</code> : 执行测试文件所在的位置及文件名</li>
+<li><code>-r</code> : 远程将所有agent启动用在分布式测试场景下，不是分布式测试只是单点就不需要-r</li>
+<li><code>-l</code> : 指定生成测试结果的保存文件， jtl 文件格式</li>
+<li><code>-e</code> : 测试结束后，生成测试报告</li>
+<li><code>-o</code> : 指定测试报告的存放位置<ul>
+<li><strong>-o 指定的文件及文件夹，必须不存在</strong>，否则执行会失败，对应上面的命令就是 <code>resultReport</code> 文件夹必须不存在否则报错，<strong>如果存在，则文件夹必须为空</strong></li>
+</ul>
+</li>
+</ul>
+<p>报告文件大致如下图所示：</p>
+<p><img src="http://on9czqsf5.bkt.clouddn.com/2017-06-26_165038.PNG?2017-06-26-16-51-13" alt="2017-06-26_165038.PNG"></p>
+<h3 id="1-2-使用之前的测试结果，生成测试报告"><a href="#1-2-使用之前的测试结果，生成测试报告" class="headerlink" title="1.2 使用之前的测试结果，生成测试报告"></a>1.2 使用之前的测试结果，生成测试报告</h3><p>如果在执行压测脚本的时候没有指定生成测试报告，在测试结束之后，也可以通过如下的命令生成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jmeter -g log.jtl -e -o resultReport</div></pre></td></tr></table></figure></p>
+<p>参数说明:</p>
+<ul>
+<li><code>-g</code> : 指定已存在的测试结果文件</li>
+<li><code>-e</code> ：测试结果后，生成测试报告</li>
+<li><code>-o</code> : 指定测试报告的存放位置<ul>
+<li><strong>-o 指定的文件及文件夹，必须不存在</strong> ，否则执行会失败</li>
+</ul>
+</li>
+</ul>
+<p>效果如上图</p>
+<h2 id="2-插件模式将-jtl-转成测试图表"><a href="#2-插件模式将-jtl-转成测试图表" class="headerlink" title="2. 插件模式将 jtl 转成测试图表"></a>2. 插件模式将 jtl 转成测试图表</h2><h2 id="2-1-图表-plugin-的类型"><a href="#2-1-图表-plugin-的类型" class="headerlink" title="2.1 图表 plugin 的类型"></a>2.1 图表 plugin 的类型</h2><ol>
+<li><code>AggregateReport</code> = JMeter’s native Aggregate Report, can be <strong>saved only as CSV</strong></li>
+<li><code>SynthesisReport</code> = mix between JMeter’s native Summary Report and Aggregate Report, can be <strong>saved only as CSV</strong></li>
+</ol>
+<ul>
+<li><code>ThreadsStateOverTime</code> = Active Threads Over Time</li>
+<li><code>BytesThroughputOverTime</code></li>
+<li><code>HitsPerSecond</code></li>
+<li><code>LatenciesOverTime</code></li>
+<li><code>PerfMon</code> = PerfMon Metrics Collector</li>
+<li><code>DbMon</code> = DbMon Metrics Collector, DataBase, get performance counters via sql</li>
+<li><code>JMXMon</code> = JMXMon Metrics Collector, Java Management Extensions counters</li>
+<li><code>ResponseCodesPerSecond</code></li>
+<li><code>ResponseTimesDistribution</code></li>
+<li><code>ResponseTimesOverTime</code></li>
+<li><code>ResponseTimesPercentiles</code></li>
+<li><code>ThroughputVsThreads</code></li>
+<li><code>TimesVsThreads</code> = Response Times VS Threads</li>
+<li><code>TransactionsPerSecond</code></li>
+<li><code>PageDataExtractorOverTime</code></li>
+<li><code>MergeResults</code> = MergeResults Command Line Merge Tool to simplify the comparison of two or more load tests, need properties file (like merge-results.properties)</li>
+</ul>
+<h2 id="2-2-不同-plugin-类型的生成方式"><a href="#2-2-不同-plugin-类型的生成方式" class="headerlink" title="2.2 不同 plugin 类型的生成方式"></a>2.2 不同 plugin 类型的生成方式</h2><h3 id="2-2-1-主要-plugin-类型"><a href="#2-2-1-主要-plugin-类型" class="headerlink" title="2.2.1 主要 plugin 类型"></a>2.2.1 主要 plugin 类型</h3><p>这里使用 <code>JMeterPluginCMD</code> 来生成对应的图片或者 csv 统计文件。</p>
+<ol>
+<li>从官网下载： <code>jpgc-cmd-2.1.zip</code>: <a href="https://jmeter-plugins.org/wiki/JMeterPluginsCMD/" target="_blank" rel="external">https://jmeter-plugins.org/wiki/JMeterPluginsCMD/</a> </li>
+<li>解压文件，对应的文件分别放入 <code>jmeter</code> 安装目录的对应文件夹下，即解压后 <code>bin</code> 目录下的文件都放入到 <code>jmeter</code> 安装目录的 <code>bin</code> 目录下，以此类推。</li>
+<li>为了使用 <code>JMeterPluginCMD</code> 生成结果图片或 csv 文件，还需要依赖一下的组件：<ol>
+<li><code>jpgc-filterresults-2.1.zip</code>  <a href="https://jmeter-plugins.org/wiki/FilterResultsTool/" target="_blank" rel="external">https://jmeter-plugins.org/wiki/FilterResultsTool/</a></li>
+<li><code>jpgc-synthesis-2.1.zip</code>  <a href="https://jmeter-plugins.org/?search=jpgc-synthesis" target="_blank" rel="external">https://jmeter-plugins.org/?search=jpgc-synthesis</a>  </li>
+<li><code>GUI</code> 界面中的 <a href="https://jmeter-plugins.org/install/Install/" target="_blank" rel="external">plugins manager</a> 中的 <code>jpgc-Standard set</code>，其中共包含以下的文件：<ul>
+<li>jpgc-dummy</li>
+<li>jpgc-fifo</li>
+<li>jpgc-graphs-basic</li>
+<li>jpgc-perfmon</li>
+<li>jpgc-tst</li>
+<li>jpgc-sense</li>
+<li>jpgc-functions</li>
+<li>jpgc-casutg</li>
+<li>jpgc-ffw<br><img src="http://on9czqsf5.bkt.clouddn.com/jpgc-Standard-Set.PNG?2017-06-26-18-46-44" alt="jpgc-Standard-Set.PNG"></li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<ol>
+<li><p>然后就可以使用 <code>JMeterPluginsCMD.bat/sh</code> 生成图片或 CSV 文件了。比如，生成性能测试结果图片或 CSV 文件的命令为：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># 生成图片</div><div class="line">JMeterPluginsCMD.bat --generate-png cpu.png --input-jtl cpu.jtl --plugin-type PerfMon</div><div class="line"></div><div class="line"># 生成 CSV 文件</div><div class="line"> JMeterPluginsCMD.bat --generate-csv cpu.csv --input-jtl cpu.jtl --plugin-type PerfMon</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li>添加完上述的文件就可以生成如下 <code>plugin</code> 类型的图表<ol>
+<li>AggregateReport</li>
+<li>SynthesisReport</li>
+<li>ThreadsStateOverTime</li>
+<li>PerfMon</li>
+<li>ResponseTimesOverTime</li>
+<li>TransactionsPerSecond</li>
+</ol>
+</li>
+</ol>
+<h3 id="2-2-2-其他类型的-plugin"><a href="#2-2-2-其他类型的-plugin" class="headerlink" title="2.2.2 其他类型的 plugin"></a>2.2.2 其他类型的 plugin</h3><p>如果要生成如下 <code>plugin</code> 类型的图表：</p>
+<ol>
+<li>BytesThroughputOverTime</li>
+<li>HitsPerSecond</li>
+<li>LatenciesOverTime</li>
+<li>ResponseCodesPerSecond</li>
+<li>ResponseTimesDistribution</li>
+<li>ResponseTimesPercentiles</li>
+<li>ThroughputVsThreads</li>
+<li>TimesVsThreads</li>
+</ol>
+<p>就还需要添加如下的 <code>jar</code> 包到 <code>jmeter</code> 安装目录的 <code>lib\ext</code>下：</p>
+<ul>
+<li><code>JMeterPlugins-Standard.jar</code>  <a href="https://jmeter-plugins.org/downloads/old/" target="_blank" rel="external">https://jmeter-plugins.org/downloads/old/</a></li>
+<li><code>JMeterPlugins-Extras.jar</code>  <a href="https://jmeter-plugins.org/downloads/old/" target="_blank" rel="external">https://jmeter-plugins.org/downloads/old/</a></li>
+</ul>
+<h3 id="2-2-3-生成所有-plugin-类型的命令"><a href="#2-2-3-生成所有-plugin-类型的命令" class="headerlink" title="2.2.3 生成所有 plugin 类型的命令"></a>2.2.3 生成所有 plugin 类型的命令</h3><p>添加好上面的依赖文件后，就可以使用如下的脚本批量生成图表了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">source /etc/profile</div><div class="line">file=&quot;./csv/test&quot;</div><div class="line">jtlfile=&quot;test.jtl&quot;</div><div class="line">JMeterPluginsCMD.sh --generate-csv $file&quot;_AggregateReport.csv&quot; --input-jtl  $jtlfile  --plugin-type AggregateReport</div><div class="line">JMeterPluginsCMD.sh --generate-csv $file&quot;_SynthesisReport.csv&quot; --input-jtl  $jtlfile  --plugin-type SynthesisReport</div><div class="line">JMeterPluginsCMD.sh --generate-csv $file&quot;_ThreadsStateOverTime.csv&quot; --input-jtl  $jtlfile  --plugin-type ThreadsStateOverTime</div><div class="line">JMeterPluginsCMD.sh --generate-csv $file&quot;_BytesThroughputOverTime.csv&quot; --input-jtl  $jtlfile  --plugin-type BytesThroughputOverTime</div><div class="line">JMeterPluginsCMD.sh --generate-csv $file&quot;_HitsPerSecond.csv&quot; --input-jtl  $jtlfile --plugin-type HitsPerSecond</div><div class="line">JMeterPluginsCMD.sh --generate-csv $file&quot;_LatenciesOverTime.csv&quot; --input-jtl  $jtlfile  --plugin-type LatenciesOverTime</div><div class="line">JMeterPluginsCMD.sh --generate-csv $file&quot;_ResponseCodesPerSecond.csv&quot; --input-jtl  $jtlfile  --plugin-type ResponseCodesPerSecond</div><div class="line">JMeterPluginsCMD.sh --generate-csv $file&quot;_ResponseTimesDistribution.csv&quot; --input-jtl  $jtlfile  --plugin-type ResponseTimesDistribution</div><div class="line">JMeterPluginsCMD.sh --generate-csv $file&quot;_ResponseTimesOverTime.csv&quot; --input-jtl  $jtlfile  --plugin-type ResponseTimesOverTime</div><div class="line">JMeterPluginsCMD.sh --generate-csv $file&quot;_ResponseTimesPercentiles.csv&quot; --input-jtl  $jtlfile  --plugin-type ResponseTimesPercentiles</div><div class="line">JMeterPluginsCMD.sh --generate-csv $file&quot;_ThroughputVsThreads.csv&quot; --input-jtl  $jtlfile  --plugin-type ThroughputVsThreads</div><div class="line">JMeterPluginsCMD.sh --generate-csv $file&quot;_TimesVsThreads.csv&quot; --input-jtl  $jtlfile  --plugin-type TimesVsThreads</div><div class="line">JMeterPluginsCMD.sh --generate-csv $file&quot;_TransactionsPerSecond.csv&quot; --input-jtl  $jtlfile  --plugin-type TransactionsPerSecond</div></pre></td></tr></table></figure></p>
+<hr>
+<p>[参考文献]</p>
+<ul>
+<li><a href="https://jmeter-plugins.org/wiki/JMeterPluginsCMD/" target="_blank" rel="external">JMeterPluginsCMD Command Line Tool</a></li>
+<li><a href="http://www.cnblogs.com/qmfsun/p/6382540.html" target="_blank" rel="external">JMeter执行压测输出HTML图形化报表（三）</a></li>
+<li><a href="http://www.cnblogs.com/miaomiaokaixin/p/6118081.html" target="_blank" rel="external">jmeter之jtl文件解析</a></li>
+<li><a href="https://jmeter-plugins.org/wiki/PluginsManager/" target="_blank" rel="external">JMeter Plugins Manager</a></li>
 </ul>
 
       
@@ -421,7 +538,9 @@ Quick">
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+            <a href="/tags/Jmeter/" rel="tag"># Jmeter</a>
+          
+            <a href="/tags/Report/" rel="tag"># Report</a>
           
         </div>
       
@@ -434,15 +553,15 @@ Quick">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/06/26/Jmeter监控服务端性能/" rel="next" title="Jmeter监控服务端性能">
+                <i class="fa fa-chevron-left"></i> Jmeter监控服务端性能
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/21/发布Android-Library项目到JCenter/" rel="prev" title="发布Android Library项目到JCenter">
-                发布Android Library项目到JCenter <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -589,7 +708,7 @@ Quick">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-命令行模式将-jtl-文件转成测试图表"><span class="nav-text">1. 命令行模式将 jtl 文件转成测试图表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-在测试的过程中将-jtl-转换成测试报告"><span class="nav-text">1.1 在测试的过程中将 jtl 转换成测试报告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-使用之前的测试结果，生成测试报告"><span class="nav-text">1.2 使用之前的测试结果，生成测试报告</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-插件模式将-jtl-转成测试图表"><span class="nav-text">2. 插件模式将 jtl 转成测试图表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-图表-plugin-的类型"><span class="nav-text">2.1 图表 plugin 的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-不同-plugin-类型的生成方式"><span class="nav-text">2.2 不同 plugin 类型的生成方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-主要-plugin-类型"><span class="nav-text">2.2.1 主要 plugin 类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-其他类型的-plugin"><span class="nav-text">2.2.2 其他类型的 plugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-生成所有-plugin-类型的命令"><span class="nav-text">2.2.3 生成所有 plugin 类型的命令</span></a></li></ol></li></ol></div>
             
 
           </div>
